@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b3f0608f-e2e3-447a-8525-a10b9108f9cf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/.idea/auto_luffy.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/app01/forms/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/app01/forms/host.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/app01/forms/user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/app01/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/app01/templates/host_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/app01/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/app01/templates/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/app01/templates/user_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/app01/views/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/app01/views/account.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/app01/views/host.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/app01/views/user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/forms/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/forms/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/forms/menu.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/forms/role.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/forms/user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/middlewares/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/middlewares/rbac.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/service/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/service/init_permission.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/service/routes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/service/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/css/commons.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/css/nav.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/imgs/default.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/imgs/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/imgs/luffy-study-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/imgs/luffy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/js/jquery-3.3.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/bootstrap/css/bootstrap-theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/bootstrap/css/bootstrap-theme.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/bootstrap/css/bootstrap-theme.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/bootstrap/css/bootstrap-theme.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/bootstrap/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/bootstrap/css/bootstrap.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/bootstrap/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/bootstrap/css/bootstrap.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/bootstrap/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/bootstrap/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/bootstrap/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/bootstrap/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/bootstrap/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/bootstrap/js/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/bootstrap/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/bootstrap/js/npm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/HELP-US-OUT.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/css/font-awesome.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/css/font-awesome.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/fonts/FontAwesome.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/fonts/fontawesome-webfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/fonts/fontawesome-webfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/fonts/fontawesome-webfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/fonts/fontawesome-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/fonts/fontawesome-webfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/less/animated.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/less/bordered-pulled.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/less/core.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/less/fixed-width.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/less/font-awesome.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/less/icons.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/less/larger.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/less/list.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/less/mixins.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/less/path.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/less/rotated-flipped.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/less/screen-reader.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/less/stacked.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/less/variables.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/scss/_animated.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/scss/_bordered-pulled.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/scss/_core.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/scss/_fixed-width.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/scss/_icons.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/scss/_larger.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/scss/_list.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/scss/_mixins.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/scss/_path.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/scss/_rotated-flipped.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/scss/_screen-reader.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/scss/_stacked.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/scss/_variables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/plugins/font-awesome/scss/font-awesome.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/rbac/css/rbac.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/static/rbac/js/rbac.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/templates/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/templates/rbac/breadcrumb.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/templates/rbac/change.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/templates/rbac/delete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/templates/rbac/distribute_permissions.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/templates/rbac/menu_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/templates/rbac/multi_menu.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/templates/rbac/multi_permissions.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/templates/rbac/role_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/templates/rbac/static_menu.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/templates/rbac/user_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/templatetags/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/templatetags/rbac.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/views/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/views/menu.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/views/role.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auto_luffy/rbac/views/user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../keke/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../keke/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../keke/.idea/keke.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../keke/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../keke/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../keke/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../keke/app01/templates/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../keke/app01/templates/hello.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../keke/app01/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../keke/app02/templates/hello.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../keke/app02/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../loocha/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../loocha/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../loocha/.idea/loocha.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../loocha/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../loocha/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../loocha/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../loocha/123.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../loocha/app01/templates/app01/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../loocha/app01/templates/app01/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../loocha/app01/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../loocha/app02/templates/app02/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../loocha/app02/templates/app02/app02_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../loocha/app02/templates/app02/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../loocha/app02/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../loocha/templates/bak.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../loocha/templates/test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_formset/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_formset/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_formset/.idea/luffy_formset.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_formset/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_formset/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_formset/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_formset/app01/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_formset/templates/multi_add.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_formset/templates/multi_edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/123.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/forms/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/forms/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/forms/menu.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/forms/role.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/forms/user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/migrations/0005_permission_pid.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/migrations/0006_permission_name.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/service/routes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/service/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/templates/rbac/breadcrumb.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/templates/rbac/change.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/templates/rbac/delete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/templates/rbac/distribute_permissions.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/templates/rbac/menu_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/templates/rbac/multi_permissions.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/templates/rbac/role_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/templates/rbac/user_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/views/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/views/menu.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/views/role.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/rbac/views/user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/test/dba.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/test/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/test/start.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/test/start1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/test/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../luffy_permission/测试.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/cmz.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/luffy_stark.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../prev_luffy_stark/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../prev_luffy_stark/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../prev_luffy_stark/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../prev_luffy_stark/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../prev_luffy_stark/.idea/prev_luffy_stark.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../prev_luffy_stark/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../prev_luffy_stark/app01/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../prev_luffy_stark/app01/xxxx.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../prev_luffy_stark/app02/xxxx.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../prev_luffy_stark/luffy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/.idea/test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="675114669">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.66" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="txt" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="PLAIN_TEXT" value="5" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/luffy_stark/settings.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/luffy_stark/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/luffy_stark/wsgi.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="5" column="30" lean-forward="true" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="953" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="luffy_stark" type="b2602c69:ProjectViewProjectNode" />
+              <item name="luffy_stark" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="luffy_stark" type="b2602c69:ProjectViewProjectNode" />
+              <item name="luffy_stark" type="462c0819:PsiDirectoryNode" />
+              <item name="luffy_stark" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="luffy_stark" type="Python.DjangoServer" factoryName="Django server">
+      <module name="luffy_stark" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b3f0608f-e2e3-447a-8525-a10b9108f9cf" name="Default Changelist" comment="" />
+      <created>1558488223051</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1558488223051</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info id="DB Browser" order="1" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.11799569" />
+      <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="DB Execution Console" order="0" />
+      <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="2" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="manage.py@luffy_permission" order="3" visible="true" weight="0.32911393" />
+      <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="5" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="6" weight="0.7019563" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info anchor="bottom" id="Message" order="8" />
+      <window_info anchor="bottom" id="Find" order="9" />
+      <window_info anchor="bottom" id="Run" order="10" />
+      <window_info anchor="bottom" id="Debug" order="11" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="14" />
+      <window_info anchor="right" id="Database" order="0" />
+      <window_info anchor="right" id="Mongo Explorer" order="1" />
+      <window_info anchor="right" id="SciView" order="2" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="3" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="4" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="5" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first" />
+    <option name="LAST_COMMIT_MESSAGE" value="first" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/luffy_stark/settings.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/luffy_stark/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/luffy_stark/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="5" column="30" lean-forward="true" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
