@@ -10,6 +10,9 @@ class Depart(models.Model):
     """
     title = models.CharField(verbose_name="部门名称", max_length=32)
 
+    def __str__(self):
+        return self.title
+
 
 class UserInfo(models.Model):
     """
@@ -19,3 +22,7 @@ class UserInfo(models.Model):
     age = models.CharField(verbose_name="姓名", max_length=32)
     email = models.CharField(verbose_name="邮箱", max_length=32)
     depart = models.ForeignKey(verbose_name="部门", to="Depart", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
