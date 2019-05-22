@@ -19,6 +19,7 @@ class StarkHandler(object):
         # 访问 http://127.0.0.1:8000/stark/app01/userinfo/list/   --> self.model_class = app01.models.UserInfo
         # 访问 http://127.0.0.1:8000/stark/app02/role/list/   --> self.model_class = app02.models.Role
         # 访问 http://127.0.0.1:8000/stark/app02/host/list/   --> self.model_class = app02.models.Host
+        #                                                site.register(models.Host, HostHandler)
         """
         print(self.model_class)
         data_list = self.model_class.objects.all()
