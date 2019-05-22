@@ -13,9 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url, include
 from django.contrib import admin
-from django.urls import path
+from stark.service.v1 import site
+
+
+print(site._registry)
+"""
+[{'model_class': <class 'app01.models.Depart'>, 'handler_class': <app01.stark.DepartHandler object at 0x000001D91946D940>},
+ {'model_class': <class 'app01.models.UserInfo'>, 'handler_class': <app01.stark.UserInfoHandler object at 0x000001D91946DA20>}, 
+ {'model_class': <class 'app02.models.Host'>, 'handler_class': <app02.stark.HostHandler object at 0x000001D91946DE80>}]
+"""
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    url(r'^admin/', admin.site.urls),
+    url(r'^stark/', site.urls),
 ]
