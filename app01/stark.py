@@ -14,6 +14,12 @@ class UserInfoHandler(StarkHandler):
     # 定制页面显示的列
     list_display = ["name", "age", "email"]
 
+    def get_list_display(self):
+        """
+        :return:
+        """
+        return ["name"]
+
 
 site.register(models.Depart, DepartHandler)
 site.register(models.UserInfo, UserInfoHandler)

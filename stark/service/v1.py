@@ -6,6 +6,17 @@ from django.shortcuts import HttpResponse, render
 
 class StarkHandler(object):
     list_display = []
+
+    def get_list_display(self):
+        """
+        显示自定义扩展:  例如根据用户的不同，显示不同的列，预留的自定义扩展
+        获取页面上应该显示的列
+        :return:
+        """
+        value = []
+        value.extend(self.list_display)
+        return value
+
     def __init__(self, model_class, prev):
         self.model_class = model_class
         self.prev = prev
@@ -29,9 +40,10 @@ class StarkHandler(object):
         # 访问: http://127.0.0.1:8000/stark/app01/userinfo/list/
         # 新页面要显示的列  ['name','age','email']
         # 用户访问的表  models.UserInfo
+        list_display = self.get_list_display()
         header_list = []
-        if self.list_display:
-            for key in self.list_display:
+        if list_display:
+            for key in list_display:
                 verbose_name = self.model_class._meta.get_field(key).verbose_name
                 header_list.append(verbose_name)
         else:
@@ -54,8 +66,8 @@ class StarkHandler(object):
         body_list = []
         for row in data_list: # 取出obj
             tr_list = []
-            if self.list_display:
-                for key in self.list_display:
+            if list_display:
+                for key in list_display:
                     tr_list.append(getattr(row,key))
             else:
                 tr_list.append(row)  # 没有定制显示，直接显示对象
