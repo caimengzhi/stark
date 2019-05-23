@@ -5,6 +5,7 @@ from django.shortcuts import HttpResponse, render
 
 
 class StarkHandler(object):
+    list_display = []
     def __init__(self, model_class, prev):
         self.model_class = model_class
         self.prev = prev
@@ -22,10 +23,48 @@ class StarkHandler(object):
         # 访问 http://127.0.0.1:8000/stark/app02/host/list/   --> self.model_class = app02.models.Host
         #                                                site.register(models.Host, HostHandler)
         """
-        print(self.model_class)
+        # print(self.model_class)
+
+        # 1. 处理表头
+        # 访问: http://127.0.0.1:8000/stark/app01/userinfo/list/
+        # 新页面要显示的列  ['name','age','email']
+        # 用户访问的表  models.UserInfo
+        header_list = []
+        for key in self.list_display:
+            verbose_name = self.model_class._meta.get_field(key).verbose_name
+            header_list.append(verbose_name)
+
+        # 2. 处理表的内容 ["name","age"]
+        """
+        [
+        obj,
+        obj,
+        obj
+        ]
+        """
         data_list = self.model_class.objects.all()
-        print("data_list = ", data_list)
-        return render(request, "stark/changelist.html", {"data_list": data_list})
+        """
+        body_list = [
+            ["蔡猛芝",30,610658552@qq.com],
+            ["朱佳曦",3,zhujiaxi@cmz.com],
+        ]
+        """
+        body_list = []
+        for row in data_list: # 取出obj
+            tr_list = []
+            for key in self.list_display:
+                tr_list.append(getattr(row,key))
+            body_list.append(tr_list)
+        print("body_list = ",body_list)
+        return render(
+            request,
+            "stark/changelist.html",
+            {
+                "data_list": data_list,
+                "header_list": header_list,
+                "body_list": body_list,
+            }
+        )
 
     def add_view(self, request):
         """
@@ -51,22 +90,53 @@ class StarkHandler(object):
         """
         return HttpResponse("删除页面")
 
-    def get_urls(self):
+    def get_url_name(self,param):
         app_label, model_name = self.model_class._meta.app_label, self.model_class._meta.model_name
         if self.prev:
-            patterns = [
-                url(r'^list/$', self.changelist_view, name="%s_%s_%s_list" % (app_label, model_name,self.prev,)),
-                url(r'^add/$', self.add_view, name="%s_%s_%s_add" % (app_label, model_name,self.prev,)),
-                url(r'^change/(\d+)/$', self.change_view, name="%s_%s_%s_change" % (app_label, model_name,self.prev,)),
-                url(r'^delete/(\d+)/$', self.delete_view, name="%s_%s_%s_delete" % (app_label, model_name,self.prev,)),
-            ]
-        else:
-            patterns = [
-                url(r'^list/$', self.changelist_view, name="%s_%s_list" %(app_label, model_name,)),
-                url(r'^add/$', self.add_view, name="%s_%s_add" % (app_label, model_name,)),
-                url(r'^change/(\d+)/$', self.change_view, name="%s_%s_change" %(app_label, model_name,)),
-                url(r'^delete/(\d+)/$', self.delete_view, name="%s_%s_delete" %(app_label, model_name,)),
-            ]
+            return "%s_%s_%s_%s" % (app_label, model_name,self.prev,param)
+        return "%s_%s_%s" % (app_label, model_name,param,)
+
+    @property
+    def get_list_url_name(self):
+        """
+        获取列表页面URL的name
+        :return:
+        """
+        return self.get_url_name("list")
+
+    @property
+    def get_add_url_name(self):
+        """
+        获取添加页面URL的name
+        :return:
+        """
+        return self.get_url_name("add")
+
+    @property
+    def get_change_url_name(self):
+        """
+        获取修改页面URL的name
+        :return:
+        """
+        return self.get_url_name("change")
+
+    @property
+    def get_delete_url_name(self):
+        """
+        获取删除页面的URL的name
+        :return:
+        """
+        return self.get_url_name("delete")
+
+    def get_urls(self):
+        app_label, model_name = self.model_class._meta.app_label, self.model_class._meta.model_name
+
+        patterns = [
+            url(r'^list/$', self.changelist_view, name=self.get_list_url_name),
+            url(r'^add/$', self.add_view, name=self.get_add_url_name),
+            url(r'^change/(\d+)/$', self.change_view, name=self.get_change_url_name),
+            url(r'^delete/(\d+)/$', self.delete_view, name=self.get_delete_url_name),
+        ]
         patterns.extend(self.extra_urls())
         return patterns
 
@@ -109,17 +179,7 @@ class StarkSite(object):
                 patterns.append(url(r'%s/%s/%s/' % (app_label, model_name, prev,), (handler.get_urls(), None, None)))
             else:
                 patterns.append(url(r'%s/%s/' % (app_label, model_name,), (handler.get_urls(), None, None)))
-            # print("app-name = ", model_class._meta.app_label)  # 获取app name
-            # print("table-name = ", model_class._meta.model_name)  # 获取 类的表名称
-            # app01.models.Depart'
-            #   /app01/depart/list/
-            #   /app01/depart/add/
-            #   /app01/depart/edit(\d+)/
-            #   /app01/depart/del(\d+)/
-
-            # patterns.append(url(r'x1/', lambda request: HttpResponse('x1')),)
-            # patterns.append(url(r'x2/', lambda request: HttpResponse('x2')),)
-        print("patterns = ", patterns)
+        # print("patterns = ", patterns)
         return patterns
 
     @property

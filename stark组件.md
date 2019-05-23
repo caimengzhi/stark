@@ -135,9 +135,12 @@
 
   - 创建
 
-&emsp;为app中的每个model类自动创建URL和相关视图函数
+&emsp;b. 为app中的每个model类自动创建URL和相关视图函数
 
 - 动态生成url
 - 将视图提取到基类
 - URL分发扩展& URL前缀或者后缀
 - 为URL 设置别名
+- URL别名进行重新生成
+
+&emsp;c.定制页面显示的列

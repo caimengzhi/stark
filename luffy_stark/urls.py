@@ -18,7 +18,7 @@ from django.contrib import admin
 from stark.service.v1 import site
 
 
-print(site._registry)
+# print(site._registry)
 """
 [{'model_class': <class 'app01.models.Depart'>, 'handler_class': <app01.stark.DepartHandler object at 0x000001D91946D940>},
  {'model_class': <class 'app01.models.UserInfo'>, 'handler_class': <app01.stark.UserInfoHandler object at 0x000001D91946DA20>}, 

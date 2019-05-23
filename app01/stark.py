@@ -7,31 +7,12 @@ from app01 import models
 
 
 class DepartHandler(StarkHandler):
-
-    def extra_urls(self):
-        """
-        额外的增加URL
-        :return:
-        """
-        return [
-            url(r'^detail/(\d+)/$', self.detail_view),
-        ]
-
-    def detail_view(self, request, pk):
-        return HttpResponse("详细页面")
+    list_display = ["id", "title"]
 
 
 class UserInfoHandler(StarkHandler):
-    def get_urls(self):
-        """
-        修改URL
-        :return:
-        """
-        patterns = [
-            url(r'^list/$', self.changelist_view),
-            url(r'^add/$', self.add_view),
-        ]
-        return patterns
+    # 定制页面显示的列
+    list_display = ["name", "age", "email"]
 
 
 site.register(models.Depart, DepartHandler)

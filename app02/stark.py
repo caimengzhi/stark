@@ -6,7 +6,7 @@ from app02 import models
 
 
 class HostHandler(StarkHandler):
-    pass
+    list_display = ["id", "host"]
 
 
 class RoleHandler(StarkHandler):
@@ -20,4 +20,4 @@ class ProjectHandler(StarkHandler):
 site.register(models.Host, HostHandler)
 site.register(models.Role)
 site.register(models.Project)
-site.register(models.Project, prev="private")
+# site.register(models.Project, prev="private")
