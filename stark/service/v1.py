@@ -30,10 +30,12 @@ class StarkHandler(object):
         # 新页面要显示的列  ['name','age','email']
         # 用户访问的表  models.UserInfo
         header_list = []
-        for key in self.list_display:
-            verbose_name = self.model_class._meta.get_field(key).verbose_name
-            header_list.append(verbose_name)
-
+        if self.list_display:
+            for key in self.list_display:
+                verbose_name = self.model_class._meta.get_field(key).verbose_name
+                header_list.append(verbose_name)
+        else:
+            header_list.append(self.model_class._meta.model_name)
         # 2. 处理表的内容 ["name","age"]
         """
         [
@@ -52,8 +54,11 @@ class StarkHandler(object):
         body_list = []
         for row in data_list: # 取出obj
             tr_list = []
-            for key in self.list_display:
-                tr_list.append(getattr(row,key))
+            if self.list_display:
+                for key in self.list_display:
+                    tr_list.append(getattr(row,key))
+            else:
+                tr_list.append(row)  # 没有定制显示，直接显示对象
             body_list.append(tr_list)
         print("body_list = ",body_list)
         return render(
