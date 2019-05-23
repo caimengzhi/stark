@@ -21,7 +21,7 @@ class ProjectHandler(StarkHandler):
 
 
 site.register(models.Host, HostHandler)
-site.register(models.Role, RoleHandler)
-site.register(models.Project, ProjectHandler)
+site.register(models.Role)
+site.register(models.Project)
 
 

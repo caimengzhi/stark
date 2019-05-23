@@ -50,6 +50,18 @@ class StarkHandler(object):
         """
         return HttpResponse("删除页面")
 
+    def get_urls(self):
+        patterns = [
+            url(r'^list/$',self.changelist_view),
+            url(r'^add/$',self.add_view),
+            url(r'^change/(\d+)/$',self.change_view),
+            url(r'^delete/(\d+)/$',self.delete_view),
+        ]
+        patterns.extend(self.extra_urls())
+        return patterns
+
+    def extra_urls(self):
+        return []
 
 class StarkSite(object):
     def __init__(self):
@@ -57,31 +69,35 @@ class StarkSite(object):
         self.app_name = "stark"
         self.namespace = "stark"
 
-    def register(self, model_class, handler_class):
+    def register(self, model_class, handler_class=None, prev=None):
         """
         :param model_class: 是models中数据相关类
         :param handler_class: 处理请求的视图函数所在的类
+        :param prev: 生成URL前缀
         :return:
         """
         """
         self._registry = [
-            {"model_class":model_class.Depart, "handler":DepartHandler(models.Depart)},
-            {"model_class":model_class.UserInfo, "handler":UseInfoHandler(models.UserInfo)},
-            {"model_class":model_class.Host, "handler":HostHandler(models.Host)},
+            {"prev:":prev,"model_class":model_class.Depart, "handler":DepartHandler(models.Depart)},
+            {"prev:":private,"model_class":model_class.UserInfo, "handler":UseInfoHandler(models.UserInfo)},
+            {"prev:":prev,"model_class":model_class.Host, "handler":HostHandler(models.Host)},
         ]
         """
-        self._registry.append({"model_class": model_class, "handler": handler_class(model_class)})
+        if not handler_class:
+            handler_class = StarkHandler
+        self._registry.append({"model_class": model_class, "handler": handler_class(model_class),"prev":prev})
 
     def get_urls(self):
         patterns = []
         for item in self._registry:
             model_class = item["model_class"]
             handler = item["handler"]
+            prev = item["prev"]
             app_label, model_name = model_class._meta.app_label, model_class._meta.model_name
-            patterns.append(url(r'%s/%s/list/$' % (app_label, model_name,), handler.changelist_view))
-            patterns.append(url(r'%s/%s/add/$' % (app_label, model_name,), handler.add_view))
-            patterns.append(url(r'%s/%s/change/(\d+)/$' % (app_label, model_name,), handler.change_view))
-            patterns.append(url(r'%s/%s/del/(\d+)/$' % (app_label, model_name,), handler.delete_view))
+            if prev:
+                patterns.append(url(r'%s/%s/%s/' % (app_label, model_name,prev,), (handler.get_urls(),None, None)))
+            else:
+                patterns.append(url(r'%s/%s/' % (app_label, model_name,), (handler.get_urls(),None, None)))
             # print("app-name = ", model_class._meta.app_label)  # 获取app name
             # print("table-name = ", model_class._meta.model_name)  # 获取 类的表名称
             # app01.models.Depart'
