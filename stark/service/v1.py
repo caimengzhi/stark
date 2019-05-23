@@ -2,7 +2,7 @@
 # _*_ coding: utf-8 _*_
 from django.conf.urls import url
 from django.shortcuts import HttpResponse, render
-
+from types import FunctionType
 
 class StarkHandler(object):
     list_display = []
@@ -43,8 +43,11 @@ class StarkHandler(object):
         list_display = self.get_list_display()
         header_list = []
         if list_display:
-            for key in list_display:
-                verbose_name = self.model_class._meta.get_field(key).verbose_name
+            for key_or_func in list_display:
+                if isinstance(key_or_func,FunctionType): # 函数
+                    verbose_name = key_or_func(self, obj=None, is_header=True)
+                else:
+                    verbose_name = self.model_class._meta.get_field(key_or_func).verbose_name
                 header_list.append(verbose_name)
         else:
             header_list.append(self.model_class._meta.model_name)
@@ -67,8 +70,11 @@ class StarkHandler(object):
         for row in data_list: # 取出obj
             tr_list = []
             if list_display:
-                for key in list_display:
-                    tr_list.append(getattr(row,key))
+                for key_or_func in list_display:
+                    if isinstance(key_or_func, FunctionType):  # 函数
+                        tr_list.append(key_or_func(self,row,is_header=False))
+                    else:
+                        tr_list.append(getattr(row,key_or_func))
             else:
                 tr_list.append(row)  # 没有定制显示，直接显示对象
             body_list.append(tr_list)
