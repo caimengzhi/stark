@@ -6,22 +6,18 @@ from app02 import models
 
 
 class HostHandler(StarkHandler):
-
     pass
 
 
 class RoleHandler(StarkHandler):
-
     pass
 
 
 class ProjectHandler(StarkHandler):
-
     pass
 
 
 site.register(models.Host, HostHandler)
 site.register(models.Role)
 site.register(models.Project)
-
-
+site.register(models.Project, prev="private")

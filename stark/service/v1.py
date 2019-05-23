@@ -5,8 +5,9 @@ from django.shortcuts import HttpResponse, render
 
 
 class StarkHandler(object):
-    def __init__(self, model_class):
+    def __init__(self, model_class, prev):
         self.model_class = model_class
+        self.prev = prev
 
     def changelist_view(self, request):
         """
@@ -51,17 +52,27 @@ class StarkHandler(object):
         return HttpResponse("删除页面")
 
     def get_urls(self):
-        patterns = [
-            url(r'^list/$',self.changelist_view),
-            url(r'^add/$',self.add_view),
-            url(r'^change/(\d+)/$',self.change_view),
-            url(r'^delete/(\d+)/$',self.delete_view),
-        ]
+        app_label, model_name = self.model_class._meta.app_label, self.model_class._meta.model_name
+        if self.prev:
+            patterns = [
+                url(r'^list/$', self.changelist_view, name="%s_%s_%s_list" % (app_label, model_name,self.prev,)),
+                url(r'^add/$', self.add_view, name="%s_%s_%s_add" % (app_label, model_name,self.prev,)),
+                url(r'^change/(\d+)/$', self.change_view, name="%s_%s_%s_change" % (app_label, model_name,self.prev,)),
+                url(r'^delete/(\d+)/$', self.delete_view, name="%s_%s_%s_delete" % (app_label, model_name,self.prev,)),
+            ]
+        else:
+            patterns = [
+                url(r'^list/$', self.changelist_view, name="%s_%s_list" %(app_label, model_name,)),
+                url(r'^add/$', self.add_view, name="%s_%s_add" % (app_label, model_name,)),
+                url(r'^change/(\d+)/$', self.change_view, name="%s_%s_change" %(app_label, model_name,)),
+                url(r'^delete/(\d+)/$', self.delete_view, name="%s_%s_delete" %(app_label, model_name,)),
+            ]
         patterns.extend(self.extra_urls())
         return patterns
 
     def extra_urls(self):
         return []
+
 
 class StarkSite(object):
     def __init__(self):
@@ -78,14 +89,14 @@ class StarkSite(object):
         """
         """
         self._registry = [
-            {"prev:":prev,"model_class":model_class.Depart, "handler":DepartHandler(models.Depart)},
-            {"prev:":private,"model_class":model_class.UserInfo, "handler":UseInfoHandler(models.UserInfo)},
-            {"prev:":prev,"model_class":model_class.Host, "handler":HostHandler(models.Host)},
+            {"prev:":prev,"model_class":model_class.Depart, "handler":DepartHandler(models.Depart,prev)},
+            {"prev:":private,"model_class":model_class.UserInfo, "handler":UseInfoHandler(models.UserInfo,prev)},
+            {"prev:":prev,"model_class":model_class.Host, "handler":HostHandler(models.Host,prev)},
         ]
         """
         if not handler_class:
             handler_class = StarkHandler
-        self._registry.append({"model_class": model_class, "handler": handler_class(model_class),"prev":prev})
+        self._registry.append({"model_class": model_class, "handler": handler_class(model_class, prev), "prev": prev})
 
     def get_urls(self):
         patterns = []
@@ -95,9 +106,9 @@ class StarkSite(object):
             prev = item["prev"]
             app_label, model_name = model_class._meta.app_label, model_class._meta.model_name
             if prev:
-                patterns.append(url(r'%s/%s/%s/' % (app_label, model_name,prev,), (handler.get_urls(),None, None)))
+                patterns.append(url(r'%s/%s/%s/' % (app_label, model_name, prev,), (handler.get_urls(), None, None)))
             else:
-                patterns.append(url(r'%s/%s/' % (app_label, model_name,), (handler.get_urls(),None, None)))
+                patterns.append(url(r'%s/%s/' % (app_label, model_name,), (handler.get_urls(), None, None)))
             # print("app-name = ", model_class._meta.app_label)  # 获取app name
             # print("table-name = ", model_class._meta.model_name)  # 获取 类的表名称
             # app01.models.Depart'
