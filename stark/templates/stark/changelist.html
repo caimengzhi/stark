@@ -1,29 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>数据列表</h1>
-    <table border="1">
-        <thead>
-        <tr>
-            {% for item in header_list %}
-                <th>{{ item }}</th>
-            {% endfor %}
-        </tr>
-        </thead>
+{% extends "layout.html" %}
+{% block content %}
+    <div class="luffy-container">
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                {% for item in header_list %}
+                    <th>{{ item }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
 
-        <tbody>
+            <tbody>
             {% for row in body_list %}
                 <tr>
-                {% for ele in row %}
-                    <td>{{ ele }}</td>
-                {% endfor %}
+                    {% for ele in row %}
+                        <td>{{ ele }}</td>
+                    {% endfor %}
                 </tr>
             {% endfor %}
-        </tbody>
-    </table>
-</body>
-</html>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
