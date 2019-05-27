@@ -6,7 +6,7 @@ from app02 import models
 
 
 class HostHandler(StarkHandler):
-    list_display = ["id", "host"]
+    list_display = ["id", "host", StarkHandler.display_edit, StarkHandler.display_del]
 
 
 class RoleHandler(StarkHandler):

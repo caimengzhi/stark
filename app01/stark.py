@@ -2,34 +2,37 @@
 # _*_ coding: utf-8 _*_
 from django.conf.urls import url
 from django.shortcuts import HttpResponse
-from stark.service.v1 import site, StarkHandler
+from django.urls import reverse
+from stark.service.v1 import site, StarkHandler, get_choice_text
 from app01 import models
 from django.utils.safestring import mark_safe
 
 
 class DepartHandler(StarkHandler):
-    list_display = ["id", "title"]
+    list_display = ["id", "title", StarkHandler.display_edit, StarkHandler.display_del]
 
 
 class UserInfoHandler(StarkHandler):
 
-    def display_edit(self, obj=None, is_header=None):
-        """
-        自定义页面显示的列，包括表头和内容
-        :param obj:
-        :param is_header:
-        :return:
-        """
-        if is_header:
-            return "编辑"
-        return mark_safe("<a href='http://www.jd.com'>编辑</a>")
-
-    def display_del(self, obj=None, is_header=None):
-        if is_header:
-            return "删除"
-        return mark_safe("<a href='http://www.jd.com'>删除</a>")
+    # def display_depart(self, obj=None, is_header=None):
+    #     if is_header:
+    #         return "部门"
+    #     else:
+    #         return obj.depart.title
     # 定制页面显示的列
-    list_display = ["name", "age", "email", display_edit, display_del]
+    # list_display = ["name", "age", "email",display_depart, StarkHandler.display_edit, StarkHandler.display_del]
+
+    def display_gender(self, obj=None, is_header=None):
+        if is_header:
+            return "性别"
+        else:
+            return obj.get_gender_display()
+
+    list_display = ["name",
+                    get_choice_text("性别", "gender"),
+                    get_choice_text("年级", "classes"),
+                    display_gender,
+                    "age", "email", "depart", StarkHandler.display_edit, StarkHandler.display_del]
 
     # def get_list_display(self):
     #     """

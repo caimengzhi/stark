@@ -3,9 +3,42 @@
 from django.conf.urls import url
 from django.shortcuts import HttpResponse, render
 from types import FunctionType
+from django.urls import reverse
+from django.utils.safestring import mark_safe
+
+
+def get_choice_text(title, filed):
+    """
+    对于stark组件中定义列时，choice如果想要显示中文信息，调用此方法即可
+    :param title: 期望页面显示的表头
+    :param filed: 字段名称
+    :return:
+    """
+
+    def inner(self, obj=None, is_header=None):
+        if is_header:
+            return title
+        method = "get_%s_display" % filed
+        return getattr(obj, method)()
+
+    return inner
+
 
 class StarkHandler(object):
     list_display = []
+    def display_edit(self, obj=None, is_header=None):
+        if is_header:
+            return "编辑"
+        name = "%s:%s" % (self.site.namespace, self.get_change_url_name)
+        url = reverse(name, args=(obj.pk,))
+        return mark_safe("<a href='%s'>编辑</a>" %url)
+
+    def display_del(self, obj=None, is_header=None):
+        if is_header:
+            return "删除"
+        name = "%s:%s" % (self.site.namespace, self.get_delete_url_name)
+        url = reverse(name, args=(obj.pk,))
+        return mark_safe("<a href='%s'>删除</a>" % url)
 
     def get_list_display(self):
         """
@@ -17,7 +50,8 @@ class StarkHandler(object):
         value.extend(self.list_display)
         return value
 
-    def __init__(self, model_class, prev):
+    def __init__(self, site, model_class, prev):
+        self.site = site
         self.model_class = model_class
         self.prev = prev
 
@@ -78,7 +112,7 @@ class StarkHandler(object):
             else:
                 tr_list.append(row)  # 没有定制显示，直接显示对象
             body_list.append(tr_list)
-        print("body_list = ",body_list)
+        # print("body_list = ",body_list)
         return render(
             request,
             "stark/changelist.html",
@@ -189,7 +223,7 @@ class StarkSite(object):
         """
         if not handler_class:
             handler_class = StarkHandler
-        self._registry.append({"model_class": model_class, "handler": handler_class(model_class, prev), "prev": prev})
+        self._registry.append({"model_class": model_class, "handler": handler_class(self, model_class, prev), "prev": prev})
 
     def get_urls(self):
         patterns = []
