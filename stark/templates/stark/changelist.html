@@ -20,5 +20,10 @@
             {% endfor %}
             </tbody>
         </table>
+        <nav>
+            <ul class="pagination">
+                {{ pager.page_html | safe}}
+            </ul>
+        </nav>
     </div>
 {% endblock %}

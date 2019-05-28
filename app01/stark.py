@@ -33,7 +33,8 @@ class UserInfoHandler(StarkHandler):
                     get_choice_text("年级", "classes"),
                     display_gender,
                     "age", "email", "depart", StarkHandler.display_edit, StarkHandler.display_del]
-
+    # per_page_count = 20
+    per_page_count = 1
     # def get_list_display(self):
     #     """
     #     自定义扩展,例如 根据用户的不同显示不同的列

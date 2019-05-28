@@ -5,7 +5,7 @@ from django.shortcuts import HttpResponse, render
 from types import FunctionType
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-
+from stark.utils.pagination import Pagination
 
 def get_choice_text(title, filed):
     """
@@ -20,12 +20,14 @@ def get_choice_text(title, filed):
             return title
         method = "get_%s_display" % filed
         return getattr(obj, method)()
-
     return inner
 
 
 class StarkHandler(object):
     list_display = []
+    per_page_count = 10  # 默认每页显示10条数据
+
+    has_add_btn = True
     def display_edit(self, obj=None, is_header=None):
         if is_header:
             return "编辑"
@@ -61,6 +63,9 @@ class StarkHandler(object):
         :param request:
         :return:
         """
+        # 从数据库中获取所有的数据
+        # 根据url中获取的page=n，来切片
+        data_list = self.model_class.objects.all()
         """
         # 访问 http://127.0.0.1:8000/stark/app01/depart/list/   --> self.model_class = app01.models.Depart
         # 访问 http://127.0.0.1:8000/stark/app01/userinfo/list/   --> self.model_class = app01.models.UserInfo
@@ -70,7 +75,23 @@ class StarkHandler(object):
         """
         # print(self.model_class)
 
-        # 1. 处理表头
+        # ########## 1. 处理分页 ##########
+        all_count = self.model_class.objects.all().count()
+        query_params = request.GET.copy()
+        query_params._mutable = True # "?page=5&key=cmz" 可以编辑
+        print("query_params = ",query_params) # query_params =  <QueryDict: {'page': ['2']}>
+        print("path_info",request.path_info) # path_info /stark/app01/userinfo/list/
+        pager = Pagination(
+            current_page=request.GET.get('page'),
+            all_count=all_count,
+            base_url=request.path_info,
+            query_params=query_params,
+            per_page=self.per_page_count,    # 默认每页显示10条数据
+        )
+
+        data_list = self.model_class.objects.all()[pager.start:pager.end]
+
+        # ########## 2. 处理表格 ##########
         # 访问: http://127.0.0.1:8000/stark/app01/userinfo/list/
         # 新页面要显示的列  ['name','age','email']
         # 用户访问的表  models.UserInfo
@@ -93,7 +114,7 @@ class StarkHandler(object):
         obj
         ]
         """
-        data_list = self.model_class.objects.all()
+
         """
         body_list = [
             ["蔡猛芝",30,610658552@qq.com],
@@ -120,6 +141,7 @@ class StarkHandler(object):
                 "data_list": data_list,
                 "header_list": header_list,
                 "body_list": body_list,
+                "pager": pager,
             }
         )
 
