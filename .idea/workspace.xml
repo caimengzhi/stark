@@ -184,13 +184,6 @@
       <change afterPath="$PROJECT_DIR$/../luffy_permission/test/start1.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../luffy_permission/test/test.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../luffy_permission/测试.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/cmz.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/luffy_stark.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stark/utils/pagination.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../prev_luffy_stark/.idea/dbnavigator.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../prev_luffy_stark/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../prev_luffy_stark/.idea/misc.xml" afterDir="false" />
@@ -278,26 +271,26 @@
           <entry key="app02_host" value="1" />
           <entry key="app02_role" value="1" />
           <entry key="css" value="3" />
-          <entry key="html" value="9" />
-          <entry key="md" value="2" />
-          <entry key="py" value="35" />
+          <entry key="html" value="11" />
+          <entry key="md" value="3" />
+          <entry key="py" value="38" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="3" />
           <entry key="Database Element" value="5" />
-          <entry key="HTML" value="9" />
-          <entry key="Markdown" value="2" />
-          <entry key="Python" value="35" />
+          <entry key="HTML" value="11" />
+          <entry key="Markdown" value="3" />
+          <entry key="Python" value="38" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="cell" value="84" />
-          <entry key="html" value="288" />
-          <entry key="md" value="56" />
-          <entry key="py" value="5440" />
+          <entry key="html" value="348" />
+          <entry key="md" value="93" />
+          <entry key="py" value="6167" />
           <entry key="py@luffy_stark" value="22" />
           <entry key="txt" value="5" />
         </counts>
@@ -305,10 +298,10 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CommandLine" value="22" />
-          <entry key="HTML" value="288" />
-          <entry key="Markdown" value="56" />
+          <entry key="HTML" value="348" />
+          <entry key="Markdown" value="93" />
           <entry key="PLAIN_TEXT" value="5" />
-          <entry key="Python" value="5440" />
+          <entry key="Python" value="6167" />
           <entry key="Scratch" value="84" />
         </counts>
       </usages-collector>
@@ -322,18 +315,63 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/stark/service/v1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+            <state relative-caret-position="265">
+              <caret line="237" column="29" selection-start-line="237" selection-start-column="29" selection-end-line="237" selection-end-column="29" />
               <folding>
-                <element signature="e#42#74#0" expanded="true" />
+                <element signature="e#42#58#0" expanded="true" />
                 <element signature="e#320#632#0" />
                 <element signature="e#320#439#1" />
                 <element signature="e#786#993#0" />
                 <element signature="e#1056#1264#0" />
                 <element signature="e#1306#1482#0" />
-                <element signature="e#1541#1621#0" />
+                <element signature="e#1671#4922#0" />
                 <element signature="e#1671#1740#1" />
+                <element signature="e#4965#5070#0" />
+                <element signature="e#5120#5225#0" />
+                <element signature="e#5275#5380#0" />
+                <element signature="e#5424#5671#0" />
+                <element signature="e#5728#5824#0" />
+                <element signature="e#5880#5975#0" />
+                <element signature="e#6034#6132#0" />
+                <element signature="e#6191#6290#0" />
+                <element signature="e#6873#6882#0" />
+                <marker date="1559048247336" expanded="true" signature="1724:1729" ph="..." />
+                <marker date="1559048247336" expanded="true" signature="7293:7449" ph="..." />
+                <marker date="1559048247336" expanded="true" signature="7373:7432" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app01/stark.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="275">
+              <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
+              <folding>
+                <element signature="e#42#74#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/stark/templates/stark/changelist.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/stark组件.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="252">
+                <caret line="150" column="33" selection-start-line="150" selection-start-column="33" selection-end-line="150" selection-end-column="33" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -378,8 +416,8 @@
         <option value="$PROJECT_DIR$/luffy_stark/settings.py" />
         <option value="$PROJECT_DIR$/stark/utils/pager.py" />
         <option value="$PROJECT_DIR$/stark/templates/stark/changelist.html" />
-        <option value="$PROJECT_DIR$/app01/stark.py" />
         <option value="$PROJECT_DIR$/stark组件.md" />
+        <option value="$PROJECT_DIR$/app01/stark.py" />
         <option value="$PROJECT_DIR$/stark/service/v1.py" />
       </list>
     </option>
@@ -390,11 +428,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="704" />
+    <option name="y" value="98" />
     <option name="width" value="1788" />
-    <option name="height" value="1100" />
+    <option name="height" value="1053" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -428,13 +466,12 @@
             <path>
               <item name="luffy_stark" type="b2602c69:ProjectViewProjectNode" />
               <item name="luffy_stark" type="462c0819:PsiDirectoryNode" />
-              <item name="stark" type="462c0819:PsiDirectoryNode" />
+              <item name="app01" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="luffy_stark" type="b2602c69:ProjectViewProjectNode" />
               <item name="luffy_stark" type="462c0819:PsiDirectoryNode" />
               <item name="stark" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -560,7 +597,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="894" y="15" width="1788" height="1100" extended-state="0" />
+    <frame x="704" y="98" width="1788" height="1053" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" weight="0.32996324" />
@@ -573,11 +610,11 @@
       <window_info active="true" anchor="bottom" id="manage.py@luffy_permission" order="3" visible="true" weight="0.32911393" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.50053877" side_tool="true" weight="0.21190476" />
       <window_info anchor="bottom" id="Database Changes" order="5" />
-      <window_info anchor="bottom" id="Terminal" order="6" sideWeight="0.4994612" weight="0.32619047" />
+      <window_info anchor="bottom" id="Terminal" order="6" sideWeight="0.4994612" weight="0.32918552" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.3297619" />
       <window_info anchor="bottom" id="Message" order="8" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.3297619" />
-      <window_info active="true" anchor="bottom" id="Run" order="10" sideWeight="0.4994612" visible="true" weight="0.27375567" />
+      <window_info active="true" anchor="bottom" id="Run" order="10" sideWeight="0.4994612" visible="true" weight="0.29032257" />
       <window_info anchor="bottom" id="Debug" order="11" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
@@ -671,6 +708,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="8" column="35" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -702,6 +742,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
           <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
+          <folding>
+            <element signature="e#635#676#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -759,13 +802,6 @@
     <entry file="file://$PROJECT_DIR$/stark/admin.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/stark/templates/stark/changelist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/luffy_stark/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1300">
@@ -781,10 +817,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/stark/utils/pagination.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="99" column="5" lean-forward="true" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stark/templates/stark/changelist.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stark组件.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="252">
+            <caret line="150" column="33" selection-start-line="150" selection-start-column="33" selection-end-line="150" selection-end-column="33" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app01/stark.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+        <state relative-caret-position="275">
+          <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
           <folding>
             <element signature="e#42#74#0" expanded="true" />
           </folding>
@@ -793,41 +853,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/http/request.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12425">
-          <caret line="517" column="8" selection-start-line="517" selection-start-column="8" selection-end-line="517" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stark/utils/pagination.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="99" column="5" lean-forward="true" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stark组件.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="237">
-            <caret line="143" column="13" lean-forward="true" selection-start-line="143" selection-start-column="13" selection-end-line="143" selection-end-column="13" />
-          </first_editor>
-          <second_editor />
+        <state relative-caret-position="9603">
+          <caret line="410" column="26" lean-forward="true" selection-start-line="410" selection-start-column="26" selection-end-line="410" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/stark/service/v1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+        <state relative-caret-position="265">
+          <caret line="237" column="29" selection-start-line="237" selection-start-column="29" selection-end-line="237" selection-end-column="29" />
           <folding>
-            <element signature="e#42#74#0" expanded="true" />
+            <element signature="e#42#58#0" expanded="true" />
             <element signature="e#320#632#0" />
             <element signature="e#320#439#1" />
             <element signature="e#786#993#0" />
             <element signature="e#1056#1264#0" />
             <element signature="e#1306#1482#0" />
-            <element signature="e#1541#1621#0" />
+            <element signature="e#1671#4922#0" />
             <element signature="e#1671#1740#1" />
+            <element signature="e#4965#5070#0" />
+            <element signature="e#5120#5225#0" />
+            <element signature="e#5275#5380#0" />
+            <element signature="e#5424#5671#0" />
+            <element signature="e#5728#5824#0" />
+            <element signature="e#5880#5975#0" />
+            <element signature="e#6034#6132#0" />
+            <element signature="e#6191#6290#0" />
+            <element signature="e#6873#6882#0" />
+            <marker date="1559048247336" expanded="true" signature="1724:1729" ph="..." />
+            <marker date="1559048247336" expanded="true" signature="7293:7449" ph="..." />
+            <marker date="1559048247336" expanded="true" signature="7373:7432" ph="..." />
           </folding>
         </state>
       </provider>

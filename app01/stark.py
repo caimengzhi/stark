@@ -10,17 +10,10 @@ from django.utils.safestring import mark_safe
 
 class DepartHandler(StarkHandler):
     list_display = ["id", "title", StarkHandler.display_edit, StarkHandler.display_del]
+    has_add_btn = True
 
 
 class UserInfoHandler(StarkHandler):
-
-    # def display_depart(self, obj=None, is_header=None):
-    #     if is_header:
-    #         return "部门"
-    #     else:
-    #         return obj.depart.title
-    # 定制页面显示的列
-    # list_display = ["name", "age", "email",display_depart, StarkHandler.display_edit, StarkHandler.display_del]
 
     def display_gender(self, obj=None, is_header=None):
         if is_header:
@@ -35,12 +28,7 @@ class UserInfoHandler(StarkHandler):
                     "age", "email", "depart", StarkHandler.display_edit, StarkHandler.display_del]
     # per_page_count = 20
     per_page_count = 1
-    # def get_list_display(self):
-    #     """
-    #     自定义扩展,例如 根据用户的不同显示不同的列
-    #     :return:
-    #     """
-    #     return ["name"]
+    # has_add_btn = False
 
 
 site.register(models.Depart, DepartHandler)

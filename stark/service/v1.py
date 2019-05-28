@@ -1,11 +1,13 @@
 #!/usr/bin/python
 # _*_ coding: utf-8 _*_
+import functools
 from django.conf.urls import url
 from django.shortcuts import HttpResponse, render
 from types import FunctionType
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from stark.utils.pagination import Pagination
+from django.http import QueryDict
 
 def get_choice_text(title, filed):
     """
@@ -52,10 +54,16 @@ class StarkHandler(object):
         value.extend(self.list_display)
         return value
 
+    def get_add_btn(self):
+        if self.has_add_btn:
+            return '<a class="btn btn-primary" href="%s">添加</a>' % self.reverse_add_url()
+        return None
+
     def __init__(self, site, model_class, prev):
         self.site = site
         self.model_class = model_class
         self.prev = prev
+        self.request = None
 
     def changelist_view(self, request):
         """
@@ -63,6 +71,8 @@ class StarkHandler(object):
         :param request:
         :return:
         """
+
+        self.request = request
         # 从数据库中获取所有的数据
         # 根据url中获取的page=n，来切片
         data_list = self.model_class.objects.all()
@@ -134,6 +144,9 @@ class StarkHandler(object):
                 tr_list.append(row)  # 没有定制显示，直接显示对象
             body_list.append(tr_list)
         # print("body_list = ",body_list)
+
+        # ----------------  3. 添加按钮 -------------------
+        add_btn = self.get_add_btn()
         return render(
             request,
             "stark/changelist.html",
@@ -142,6 +155,7 @@ class StarkHandler(object):
                 "header_list": header_list,
                 "body_list": body_list,
                 "pager": pager,
+                "add_btn": add_btn,
             }
         )
 
@@ -207,14 +221,33 @@ class StarkHandler(object):
         """
         return self.get_url_name("delete")
 
+    def reverse_add_url(self):
+        # 根据别名反向生成URL
+        name = "%s:%s" % (self.site.namespace, self.get_add_url_name)
+        base_url = reverse(name)
+        if not self.request.GET:
+            add_url = base_url
+        else:
+            param = self.request.GET.urlencode()  # page=2&age=18 也就是path_info后面的参数
+            new_query_dict = QueryDict(mutable=True)
+            new_query_dict["_filter"] = param
+            add_url = "%s?%s" % (base_url, new_query_dict.urlencode())
+        return add_url
+
+    def wrapper(self,func):
+        @functools.wraps(func)
+        def inner(request, *args, **kwargs):
+            self.request = request
+            return func(request, *args, **kwargs)
+        return inner
     def get_urls(self):
         app_label, model_name = self.model_class._meta.app_label, self.model_class._meta.model_name
 
         patterns = [
-            url(r'^list/$', self.changelist_view, name=self.get_list_url_name),
-            url(r'^add/$', self.add_view, name=self.get_add_url_name),
-            url(r'^change/(\d+)/$', self.change_view, name=self.get_change_url_name),
-            url(r'^delete/(\d+)/$', self.delete_view, name=self.get_delete_url_name),
+            url(r'^list/$', self.wrapper(self.changelist_view), name=self.get_list_url_name),
+            url(r'^add/$', self.wrapper(self.add_view), name=self.get_add_url_name),
+            url(r'^change/(\d+)/$', self.wrapper(self.change_view), name=self.get_change_url_name),
+            url(r'^delete/(\d+)/$', self.wrapper(self.delete_view), name=self.get_delete_url_name),
         ]
         patterns.extend(self.extra_urls())
         return patterns
