@@ -2,12 +2,13 @@
 # _*_ coding: utf-8 _*_
 import functools
 from django.conf.urls import url
-from django.shortcuts import HttpResponse, render
+from django.shortcuts import HttpResponse, render,redirect
 from types import FunctionType
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from stark.utils.pagination import Pagination
 from django.http import QueryDict
+from django import forms
 
 def get_choice_text(title, filed):
     """
@@ -23,6 +24,14 @@ def get_choice_text(title, filed):
         method = "get_%s_display" % filed
         return getattr(obj, method)()
     return inner
+
+
+class StarkModelForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(StarkModelForm, self).__init__(*args, **kwargs)
+        # 统一给UserModelForm生成的字段添加样式
+        for name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
 
 
 class StarkHandler(object):
@@ -58,6 +67,17 @@ class StarkHandler(object):
         if self.has_add_btn:
             return '<a class="btn btn-primary" href="%s">添加</a>' % self.reverse_add_url()
         return None
+
+    model_form_class = None
+    def get_model_form_class(self):
+        if self.model_form_class:
+            return self.model_form_class
+        class DynamicModelForm(StarkModelForm):
+            class Meta:
+                model = self.model_class  # models.UserInfo,针对add
+                fields = "__all__"
+
+        return DynamicModelForm
 
     def __init__(self, site, model_class, prev):
         self.site = site
@@ -159,13 +179,32 @@ class StarkHandler(object):
             }
         )
 
+    def save(self,form,is_update=False):
+        """
+        在ModelForm保存数据之前预留的钩子方法
+        :param form:
+        :param is_update:
+        :return:
+        """
+        form.save()
+
     def add_view(self, request):
         """
         增加页面
         :param request:
         :return:
         """
-        return HttpResponse("添加页面")
+        model_form_class = self.get_model_form_class()
+
+        if request.method == "GET":
+            form = model_form_class()
+            return render(request,"stark/change.html",{"form":form})
+        form = model_form_class(data=request.POST)
+        if form.is_valid():
+            self.save(form,is_update=False)
+            # 在数据保存的时候，跳转回列表页面，携带原来的url后面的参数
+            return redirect(self.reverse_list_url())
+        return  render(request, "stark/change.html", {"form": form})
 
     def change_view(self, request, pk):
         """
@@ -234,12 +273,22 @@ class StarkHandler(object):
             add_url = "%s?%s" % (base_url, new_query_dict.urlencode())
         return add_url
 
+    def reverse_list_url(self):
+        # 数据库报错成功后，跳转到列表页面
+        name = "%s:%s" % (self.site.namespace, self.get_list_url_name,)
+        base_url = reverse(name)
+        params = self.request.GET.get("_filter")
+        if not params:
+            return base_url
+        return "%s?%s" % (base_url, params)
+
     def wrapper(self,func):
         @functools.wraps(func)
         def inner(request, *args, **kwargs):
             self.request = request
             return func(request, *args, **kwargs)
         return inner
+
     def get_urls(self):
         app_label, model_name = self.model_class._meta.app_label, self.model_class._meta.model_name
 

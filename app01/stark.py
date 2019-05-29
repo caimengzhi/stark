@@ -3,14 +3,24 @@
 from django.conf.urls import url
 from django.shortcuts import HttpResponse
 from django.urls import reverse
-from stark.service.v1 import site, StarkHandler, get_choice_text
+from stark.service.v1 import site, StarkHandler, get_choice_text, StarkModelForm
 from app01 import models
+from django import forms
 from django.utils.safestring import mark_safe
 
 
 class DepartHandler(StarkHandler):
     list_display = ["id", "title", StarkHandler.display_edit, StarkHandler.display_del]
     has_add_btn = True
+
+
+class UserInfoModelForm(StarkModelForm):
+    # xx = forms.CharField() # 新
+
+    class Meta:
+        model = models.UserInfo
+        # fields = "__all__"
+        fields = ["name", "gender", "classes", "age", "email"]
 
 
 class UserInfoHandler(StarkHandler):
@@ -29,6 +39,11 @@ class UserInfoHandler(StarkHandler):
     # per_page_count = 20
     per_page_count = 1
     # has_add_btn = False
+    model_form_class = UserInfoModelForm
+
+    def save(self, form, is_update=False):
+        form.instance.depart_id = 1
+        form.save()
 
 
 site.register(models.Depart, DepartHandler)
