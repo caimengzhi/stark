@@ -37,9 +37,10 @@ class UserInfoHandler(StarkHandler):
                     display_gender,
                     "age", "email", "depart", StarkHandler.display_edit, StarkHandler.display_del]
     # per_page_count = 20
-    per_page_count = 1
+    per_page_count = 10
     # has_add_btn = False
     model_form_class = UserInfoModelForm
+    order_list = ['id']  # 排序，sql中的order
 
     def save(self, form, is_update=False):
         form.instance.depart_id = 1

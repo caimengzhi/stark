@@ -38,7 +38,10 @@ class StarkHandler(object):
     list_display = []
     per_page_count = 10  # 默认每页显示10条数据
 
-    has_add_btn = True
+    has_add_btn = True  # 默认有添加按钮
+
+    order_list = []
+
     def display_edit(self, obj=None, is_header=None):
         if is_header:
             return "编辑"
@@ -80,6 +83,9 @@ class StarkHandler(object):
 
         return DynamicModelForm
 
+    def get_order_list(self):
+            return self.order_list or ["-id", ]
+
     def __init__(self, site, model_class, prev):
         self.site = site
         self.model_class = model_class
@@ -92,6 +98,8 @@ class StarkHandler(object):
         :param request:
         :return:
         """
+        # -----------1. 获取排序 ------------
+        order_list = self.get_order_list()
 
         self.request = request
         # 从数据库中获取所有的数据
@@ -106,8 +114,9 @@ class StarkHandler(object):
         """
         # print(self.model_class)
 
-        # ########## 1. 处理分页 ##########
-        all_count = self.model_class.objects.all().count()
+        # ########## 2. 处理分页 ##########
+        queryset = self.model_class.objects.all().order_by(*order_list)
+        all_count = queryset.count()
         query_params = request.GET.copy()
         query_params._mutable = True # "?page=5&key=cmz" 可以编辑
         print("query_params = ",query_params) # query_params =  <QueryDict: {'page': ['2']}>
@@ -120,9 +129,9 @@ class StarkHandler(object):
             per_page=self.per_page_count,    # 默认每页显示10条数据
         )
 
-        data_list = self.model_class.objects.all()[pager.start:pager.end]
+        data_list = queryset[pager.start:pager.end]
 
-        # ########## 2. 处理表格 ##########
+        # ########## 3. 处理表格 ##########
         # 访问: http://127.0.0.1:8000/stark/app01/userinfo/list/
         # 新页面要显示的列  ['name','age','email']
         # 用户访问的表  models.UserInfo
@@ -166,7 +175,7 @@ class StarkHandler(object):
             body_list.append(tr_list)
         # print("body_list = ",body_list)
 
-        # ----------------  3. 添加按钮 -------------------
+        # ----------------  4. 添加按钮 -------------------
         add_btn = self.get_add_btn()
         return render(
             request,
