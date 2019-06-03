@@ -1,11 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="luffy-container">
-        {% if add_btn %}
-            <div style="margin: 5px 0;float: left">
-                {{ add_btn|safe }}
-            </div>
-        {% endif %}
 
         {% if search_list %}
             <div style="float: right;">
@@ -17,6 +12,24 @@
                         </button>
                     </div>
                 </form>
+            </div>
+        {% endif %}
+
+        <div style="float: left;margin-right: 10px;">
+            <div class="form-inline">
+                <div class="form-group" style="margin: 5px 0;">
+                    <select class="form-control">
+                        <option value="">请选择操作</option>
+                        <option value="">批量删除</option>
+                        <option value="">批量修改</option>
+                    </select>
+                    <input class="btn btn-primary" type="submit" value="执行"/>
+                </div>
+            </div>
+        </div>
+        {% if add_btn %}
+            <div style="margin: 5px 0;float: left">
+                {{ add_btn|safe }}
             </div>
         {% endif %}
         <table class="table table-striped table-bordered">

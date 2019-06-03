@@ -31,11 +31,13 @@ class UserInfoHandler(StarkHandler):
         else:
             return obj.get_gender_display()
 
-    list_display = ["name",
-                    get_choice_text("性别", "gender"),
-                    get_choice_text("年级", "classes"),
-                    display_gender,
-                    "age", "email", "depart", StarkHandler.display_edit, StarkHandler.display_del]
+    list_display = [
+        StarkHandler.display_checkbox,
+        "name",
+        get_choice_text("性别", "gender"),
+        get_choice_text("年级", "classes"),
+        display_gender,
+        "age", "email", "depart", StarkHandler.display_edit, StarkHandler.display_del]
     # per_page_count = 20
     per_page_count = 10
     # has_add_btn = False
@@ -44,6 +46,7 @@ class UserInfoHandler(StarkHandler):
 
     # 姓名中含有关键字或者邮箱中含有关键字
     search_list = ["name__contains", "email__contains"]  # 模糊匹配
+
     # search_list = ["name", "email"] # 精确匹配
     # search_list = ["name__contains"]
 

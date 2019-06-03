@@ -42,6 +42,11 @@ class StarkHandler(object):
     order_list = []      # 默认排序
     search_list = []     # 默认搜索的关键字
 
+    def display_checkbox(self, obj=None, is_header=None):
+        if is_header:
+            return "选择"
+        return mark_safe("<input type='checkbox' name='pk' value='%s' />" % obj.pk)
+
     def display_edit(self, obj=None, is_header=None):
         if is_header:
             return "编辑"
