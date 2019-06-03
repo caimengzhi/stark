@@ -237,7 +237,12 @@ class StarkHandler(object):
         :param request:
         :return:
         """
-        return HttpResponse("删除页面")
+        origin_list_url = self.reverse_list_url()
+        if request.method == "GET":
+            return render(request, "stark/delete.html", {"cancel": origin_list_url})
+
+        self.model_class.objects.filter(pk=pk).delete()
+        return redirect(origin_list_url)
 
     def get_url_name(self,param):
         app_label, model_name = self.model_class._meta.app_label, self.model_class._meta.model_name

@@ -38,3 +38,16 @@ class UserInfo(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Deploy(models.Model):
+    title = models.CharField(verbose_name="标题", max_length=32)
+    status_choice = (
+        (1, "在线"),
+        (2, "离线"),
+        (3, "未知")
+    )
+    status = models.IntegerField(verbose_name="状态", choices=status_choice)
+
+    def __str__(self):
+        return self.title
