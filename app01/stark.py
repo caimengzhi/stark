@@ -42,6 +42,11 @@ class UserInfoHandler(StarkHandler):
     model_form_class = UserInfoModelForm
     order_list = ['id']  # 排序，sql中的order
 
+    # 姓名中含有关键字或者邮箱中含有关键字
+    search_list = ["name__contains", "email__contains"]  # 模糊匹配
+    # search_list = ["name", "email"] # 精确匹配
+    # search_list = ["name__contains"]
+
     def save(self, form, is_update=False):
         form.instance.depart_id = 1
         form.save()
@@ -51,13 +56,14 @@ class DeployHandler(StarkHandler):
     # 自定制显示数据
     # list_display = ['title','status']
     list_display = ['title', get_choice_text("状态", "status"), StarkHandler.display_edit, StarkHandler.display_del]
-    # per_page_count = 20
+    per_page_count = 20
     # per_page_count = 1   # 每页显示多少数据
     # has_add_btn = False  # 是否有添加按钮
 
     # def save(self, form, is_update=False):
     #     form.instance.depart_id = 1
     #     form.save()
+    search_list = ["title__contains"]
 
 
 site.register(models.Depart, DepartHandler)

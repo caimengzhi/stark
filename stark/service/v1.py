@@ -9,6 +9,7 @@ from django.utils.safestring import mark_safe
 from stark.utils.pagination import Pagination
 from django.http import QueryDict
 from django import forms
+from django.db.models import Q
 
 def get_choice_text(title, filed):
     """
@@ -37,10 +38,9 @@ class StarkModelForm(forms.ModelForm):
 class StarkHandler(object):
     list_display = []
     per_page_count = 10  # 默认每页显示10条数据
-
-    has_add_btn = True  # 默认有添加按钮
-
-    order_list = []
+    has_add_btn = True   # 默认有添加按钮
+    order_list = []      # 默认排序
+    search_list = []     # 默认搜索的关键字
 
     def display_edit(self, obj=None, is_header=None):
         if is_header:
@@ -86,6 +86,9 @@ class StarkHandler(object):
     def get_order_list(self):
             return self.order_list or ["-id", ]
 
+    def get_search_list(self):
+        return self.search_list
+
     def __init__(self, site, model_class, prev):
         self.site = site
         self.model_class = model_class
@@ -98,7 +101,26 @@ class StarkHandler(object):
         :param request:
         :return:
         """
-        # -----------1. 获取排序 ------------
+        search_list = self.get_search_list()
+        """
+        1. 如果search_list中没有值，则不显示搜索框
+        2. 获取用户提交的关键字
+        3. 构造搜索条件
+        """
+        search_values = request.GET.get("q","")
+        print("search_values = ",search_values)
+
+        # Q 查询，构造复杂的ORM查询条件
+
+        conn = Q()
+        conn.connector = 'OR'
+        if search_values:
+            for item in search_list:
+                conn.children.append((item,search_values))
+
+        self.model_class.objects.filter(conn)
+
+        # -----------1. 获取排'序 ------------
         order_list = self.get_order_list()
 
         self.request = request
@@ -115,7 +137,7 @@ class StarkHandler(object):
         # print(self.model_class)
 
         # ########## 2. 处理分页 ##########
-        queryset = self.model_class.objects.all().order_by(*order_list)
+        queryset = self.model_class.objects.filter(conn).order_by(*order_list)
         all_count = queryset.count()
         query_params = request.GET.copy()
         query_params._mutable = True # "?page=5&key=cmz" 可以编辑
@@ -186,6 +208,8 @@ class StarkHandler(object):
                 "body_list": body_list,
                 "pager": pager,
                 "add_btn": add_btn,
+                "search_list":search_list,
+                "search_values": search_values,
             }
         )
 

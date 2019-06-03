@@ -2,8 +2,21 @@
 {% block content %}
     <div class="luffy-container">
         {% if add_btn %}
-            <div style="margin: 5px 0">
+            <div style="margin: 5px 0;float: left">
                 {{ add_btn|safe }}
+            </div>
+        {% endif %}
+
+        {% if search_list %}
+            <div style="float: right;">
+                <form method="GET" class="form-inline">
+                    <div class="form-group" style="margin: 5px 0;">
+                        <input class="form-control" type="text" name="q" value="{{ search_values }}" placeholder="关键字">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
         {% endif %}
         <table class="table table-striped table-bordered">
@@ -27,7 +40,7 @@
         </table>
         <nav>
             <ul class="pagination">
-                {{ pager.page_html | safe}}
+                {{ pager.page_html | safe }}
             </ul>
         </nav>
     </div>
