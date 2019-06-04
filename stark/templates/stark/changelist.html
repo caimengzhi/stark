@@ -14,43 +14,50 @@
                 </form>
             </div>
         {% endif %}
+        <form method="post">
+            {% csrf_token %}
 
-        <div style="float: left;margin-right: 10px;">
-            <div class="form-inline">
-                <div class="form-group" style="margin: 5px 0;">
-                    <select class="form-control">
-                        <option value="">请选择操作</option>
-                        <option value="">批量删除</option>
-                        <option value="">批量修改</option>
-                    </select>
-                    <input class="btn btn-primary" type="submit" value="执行"/>
+            {% if action_dict %}
+                <div style="float: left;margin-right: 10px;">
+                    <div class="form-inline">
+                        <div class="form-group" style="margin: 5px 0;">
+                            <select class="form-control" name="action">
+                                <option value="">请选择操作</option>
+                                {% for func_name,func_text in action_dict.items %}
+                                    <option value="{{ func_name }}">{{ func_text }}</option>
+                                {% endfor %}
+                            </select>
+                            <input class="btn btn-primary" type="submit" value="执行"/>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        {% if add_btn %}
-            <div style="margin: 5px 0;float: left">
-                {{ add_btn|safe }}
-            </div>
-        {% endif %}
-        <table class="table table-striped table-bordered">
-            <thead>
-            <tr>
-                {% for item in header_list %}
-                    <th>{{ item }}</th>
-                {% endfor %}
-            </tr>
-            </thead>
+            {% endif %}
 
-            <tbody>
-            {% for row in body_list %}
+            {% if add_btn %}
+                <div style="margin: 5px 0;float: left">
+                    {{ add_btn|safe }}
+                </div>
+            {% endif %}
+            <table class="table table-striped table-bordered">
+                <thead>
                 <tr>
-                    {% for ele in row %}
-                        <td>{{ ele }}</td>
+                    {% for item in header_list %}
+                        <th>{{ item }}</th>
                     {% endfor %}
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+
+                <tbody>
+                {% for row in body_list %}
+                    <tr>
+                        {% for ele in row %}
+                            <td>{{ ele }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </form>
         <nav>
             <ul class="pagination">
                 {{ pager.page_html | safe }}

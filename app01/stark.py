@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # _*_ coding: utf-8 _*_
 from django.conf.urls import url
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, redirect
 from django.urls import reverse
 from stark.service.v1 import site, StarkHandler, get_choice_text, StarkModelForm
 from app01 import models
@@ -10,8 +10,9 @@ from django.utils.safestring import mark_safe
 
 
 class DepartHandler(StarkHandler):
-    list_display = ["id", "title", StarkHandler.display_edit, StarkHandler.display_del]
+    list_display = [StarkHandler.display_checkbox, "id", "title", StarkHandler.display_edit, StarkHandler.display_del]
     has_add_btn = True
+    action_list = [StarkHandler.action_multi_delete, ]
 
 
 class UserInfoModelForm(StarkModelForm):
@@ -49,6 +50,19 @@ class UserInfoHandler(StarkHandler):
 
     # search_list = ["name", "email"] # 精确匹配
     # search_list = ["name__contains"]
+
+    action_list = [StarkHandler.action_multi_delete, ]
+
+    # def multi_init(self, request, *args, **kwargs):
+    #     """
+    #     批量初始化
+    #     :return:
+    #     """
+    #     pass
+    # multi_init.text = "批量处理"
+
+    # action_list = [multi_delete, multi_init]
+
 
     def save(self, form, is_update=False):
         form.instance.depart_id = 1

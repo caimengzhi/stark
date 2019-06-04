@@ -41,7 +41,7 @@ class StarkHandler(object):
     has_add_btn = True   # 默认有添加按钮
     order_list = []      # 默认排序
     search_list = []     # 默认搜索的关键字
-
+    action_list = []     # 默认批量选择按钮内容
     def display_checkbox(self, obj=None, is_header=None):
         if is_header:
             return "选择"
@@ -94,18 +94,45 @@ class StarkHandler(object):
     def get_search_list(self):
         return self.search_list
 
+    def action_multi_delete(self, request, *args, **kwargs):
+        """
+        批量删除,若是想要定制执行成功的返回值，那么就为action函数设置返回值
+        :param request:
+        :return:
+        """
+        pk_list = request.POST.getlist("pk")
+        # print("pk_list = ", pk_list)
+        self.model_class.objects.filter(id__in=pk_list).delete()
+        # return redirect("https://www.jd.com")
+    action_multi_delete.text = "批量删除"
+
+    def get_action_list(self):
+        return self.action_list
+
     def __init__(self, site, model_class, prev):
         self.site = site
         self.model_class = model_class
         self.prev = prev
         self.request = None
 
-    def changelist_view(self, request):
+    def changelist_view(self, request, *args, **kwargs):
         """
         列表页面
         :param request:
         :return:
         """
+        # ---------- 处理action
+        action_list = self.get_action_list()
+        action_dict = {func.__name__: func.text for func in action_list}
+        if request.method == "POST":
+            action_func_name = request.POST.get('action')
+            print("action_func_name = ", action_func_name)
+            if action_func_name and action_func_name in action_dict:
+                action_response = getattr(self,action_func_name)(request, *args, **kwargs)
+                if action_response:
+                    return action_response
+
+        # ----------- 处理
         search_list = self.get_search_list()
         """
         1. 如果search_list中没有值，则不显示搜索框
@@ -113,10 +140,8 @@ class StarkHandler(object):
         3. 构造搜索条件
         """
         search_values = request.GET.get("q","")
-        print("search_values = ",search_values)
-
+        # print("search_values = ",search_values)
         # Q 查询，构造复杂的ORM查询条件
-
         conn = Q()
         conn.connector = 'OR'
         if search_values:
@@ -146,8 +171,8 @@ class StarkHandler(object):
         all_count = queryset.count()
         query_params = request.GET.copy()
         query_params._mutable = True # "?page=5&key=cmz" 可以编辑
-        print("query_params = ",query_params) # query_params =  <QueryDict: {'page': ['2']}>
-        print("path_info",request.path_info) # path_info /stark/app01/userinfo/list/
+        # print("query_params = ",query_params) # query_params =  <QueryDict: {'page': ['2']}>
+        # print("path_info",request.path_info) # path_info /stark/app01/userinfo/list/
         pager = Pagination(
             current_page=request.GET.get('page'),
             all_count=all_count,
@@ -215,6 +240,7 @@ class StarkHandler(object):
                 "add_btn": add_btn,
                 "search_list":search_list,
                 "search_values": search_values,
+                "action_dict": action_dict,
             }
         )
 
@@ -231,7 +257,7 @@ class StarkHandler(object):
 
         form.save()
 
-    def add_view(self, request):
+    def add_view(self, request, *args, **kwargs):
         """
         增加页面
         :param request:
@@ -248,7 +274,7 @@ class StarkHandler(object):
             return redirect(self.reverse_list_url())
         return  render(request, "stark/change.html", {"form": form})
 
-    def change_view(self, request, pk):
+    def change_view(self, request, pk, *args, **kwargs):
         """
         编辑页面
         :param request:
@@ -269,7 +295,7 @@ class StarkHandler(object):
             return redirect(self.reverse_list_url())
         return render(request, "stark/change.html", {"form": form})
 
-    def delete_view(self, request, pk):
+    def delete_view(self, request, pk, *args, **kwargs):
         """
         删除页面
         :param request:
