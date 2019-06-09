@@ -30,6 +30,22 @@ def get_choice_text(title, filed):
     return inner
 
 
+class SearchGroup(object):
+    def __init__(self,queryset_or_tuple):
+        """
+        组合搜索关联获取到的数据
+        :param queryset_or_tuple:
+        """
+        self.queryset_or_tuple = queryset_or_tuple
+
+    def __iter__(self):
+        if isinstance(self.queryset_or_tuple,tuple):
+            for item in self.queryset_or_tuple:
+                yield "<a href='#'>%s</a>" % item[1]
+        else:
+            for item in self.queryset_or_tuple:
+                yield "<a href='#'>%s</a>" % str(item)
+
 class Option(object):
     def __init__(self, filed, db_condition=None):
         """
@@ -59,12 +75,14 @@ class Option(object):
             # django 1.x获取
             # print(item,field_object.rel.model.objects.all())
 
-            # django 2.x获取
+            # django 2.x获取,queryset
             db_condition = self.get_db_condition( request,  *args, **kwargs)
-            print(self.field, field_object.related_model.objects.filter(**db_condition))
+            return SearchGroup(field_object.related_model.objects.filter(**db_condition))
+            # return field_object.related_model.objects.filter(**db_condition)
         else:
-            # 获取choice中的数据
-            print(self.field, field_object.choices)
+            # 获取choice中的数据 元组
+            return SearchGroup(field_object.choices)
+            # return field_object.choices
 
 
 class StarkModelForm(forms.ModelForm):
@@ -279,10 +297,11 @@ class StarkHandler(object):
         add_btn = self.get_add_btn()
 
         # ----------------  组合搜索  -------------------
+        search_group_row_list = []
         search_group = self.get_search_group()
         for option_object in search_group:
-            option_object.get_queryset_or_tuple(self.model_class, request, *args, **kwargs)
-
+            row = option_object.get_queryset_or_tuple(self.model_class, request, *args, **kwargs)
+            search_group_row_list.append(row)
         return render(
             request,
             "stark/changelist.html",
@@ -295,6 +314,7 @@ class StarkHandler(object):
                 "search_list": search_list,
                 "search_values": search_values,
                 "action_dict": action_dict,
+                "search_group_row_list": search_group_row_list,
             }
         )
 

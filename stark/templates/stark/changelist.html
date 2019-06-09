@@ -2,6 +2,15 @@
 {% block content %}
     <div class="luffy-container">
 
+        {% for row in search_group_row_list %}
+            <div>
+                {% for item in row %}
+                    {{ item|safe }}
+                {% endfor %}
+            </div>
+
+        {% endfor %}
+
         {% if search_list %}
             <div style="float: right;">
                 <form method="GET" class="form-inline">
@@ -14,6 +23,7 @@
                 </form>
             </div>
         {% endif %}
+
         <form method="post">
             {% csrf_token %}
 

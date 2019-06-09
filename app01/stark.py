@@ -67,7 +67,8 @@ class UserInfoHandler(StarkHandler):
 
     search_group = [
         Option("gender"),
-        Option("depart", {'id__gt': 1}),
+        Option("depart", db_condition={'id__gt': 2}),
+        # Option("depart", {'id__gt': 1}),
     ]
 
 
