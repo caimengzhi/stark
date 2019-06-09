@@ -3,7 +3,7 @@
 from django.conf.urls import url
 from django.shortcuts import HttpResponse, redirect
 from django.urls import reverse
-from stark.service.v1 import site, StarkHandler, get_choice_text, StarkModelForm
+from stark.service.v1 import site, StarkHandler, get_choice_text, StarkModelForm, Option
 from app01 import models
 from django import forms
 from django.utils.safestring import mark_safe
@@ -22,6 +22,11 @@ class UserInfoModelForm(StarkModelForm):
         model = models.UserInfo
         # fields = "__all__"
         fields = ["name", "gender", "classes", "age", "email"]
+
+
+class MyOption(Option):
+    def get_db_condition(self, request, *args, **kwargs):
+        return {'id__gt': request.GET.get("nid")}
 
 
 class UserInfoHandler(StarkHandler):
@@ -54,19 +59,16 @@ class UserInfoHandler(StarkHandler):
     action_list = [StarkHandler.action_multi_delete, ]
 
     # def multi_init(self, request, *args, **kwargs):
-    #     """
-    #     批量初始化
-    #     :return:
-    #     """
-    #     pass
     # multi_init.text = "批量处理"
-
     # action_list = [multi_delete, multi_init]
-
-
     def save(self, form, is_update=False):
         form.instance.depart_id = 1
         form.save()
+
+    search_group = [
+        Option("gender"),
+        Option("depart", {'id__gt': 1}),
+    ]
 
 
 class DeployHandler(StarkHandler):

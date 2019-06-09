@@ -2,7 +2,7 @@
 # _*_ coding: utf-8 _*_
 import functools
 from django.conf.urls import url
-from django.shortcuts import HttpResponse, render,redirect
+from django.shortcuts import HttpResponse, render, redirect
 from types import FunctionType
 from django.urls import reverse
 from django.utils.safestring import mark_safe
@@ -10,6 +10,8 @@ from stark.utils.pagination import Pagination
 from django.http import QueryDict
 from django import forms
 from django.db.models import Q
+from django.db.models import ForeignKey, ManyToManyField
+
 
 def get_choice_text(title, filed):
     """
@@ -24,7 +26,45 @@ def get_choice_text(title, filed):
             return title
         method = "get_%s_display" % filed
         return getattr(obj, method)()
+
     return inner
+
+
+class Option(object):
+    def __init__(self, filed, db_condition=None):
+        """
+        :param filed: 组合搜索关联字段
+        :param db_condition: 数据库管理查询的条件
+        """
+        self.field = filed
+        if not db_condition:
+            db_condition = {}
+        self.db_condition = db_condition
+
+    def get_db_condition(self, request,  *args, **kwargs):
+        return self.db_condition
+
+    def get_queryset_or_tuple(self,model_class,  request,  *args, **kwargs):
+        """
+        根据字段去获取数据库关联的数据
+        :return:
+        """
+        # print(item)
+        # # 根据字符串去自己对应的model类中找到字段对象，在根据对象去获取关联数据
+        field_object = model_class._meta.get_field(self.field)
+        # print("field_object = ",field_object)
+        # 获取关联数据
+        if isinstance(field_object, ForeignKey) or isinstance(field_object, ManyToManyField):
+            # FK M2M应该u获取关联表中的数据
+            # django 1.x获取
+            # print(item,field_object.rel.model.objects.all())
+
+            # django 2.x获取
+            db_condition = self.get_db_condition( request,  *args, **kwargs)
+            print(self.field, field_object.related_model.objects.filter(**db_condition))
+        else:
+            # 获取choice中的数据
+            print(self.field, field_object.choices)
 
 
 class StarkModelForm(forms.ModelForm):
@@ -38,10 +78,12 @@ class StarkModelForm(forms.ModelForm):
 class StarkHandler(object):
     list_display = []
     per_page_count = 10  # 默认每页显示10条数据
-    has_add_btn = True   # 默认有添加按钮
-    order_list = []      # 默认排序
-    search_list = []     # 默认搜索的关键字
-    action_list = []     # 默认批量选择按钮内容
+    has_add_btn = True  # 默认有添加按钮
+    order_list = []  # 默认排序
+    search_list = []  # 默认搜索的关键字
+    action_list = []  # 默认批量选择按钮内容
+    search_group = []  # 默认组合搜索
+
     def display_checkbox(self, obj=None, is_header=None):
         if is_header:
             return "选择"
@@ -78,9 +120,11 @@ class StarkHandler(object):
         return None
 
     model_form_class = None
+
     def get_model_form_class(self):
         if self.model_form_class:
             return self.model_form_class
+
         class DynamicModelForm(StarkModelForm):
             class Meta:
                 model = self.model_class  # models.UserInfo,针对add
@@ -89,7 +133,7 @@ class StarkHandler(object):
         return DynamicModelForm
 
     def get_order_list(self):
-            return self.order_list or ["-id", ]
+        return self.order_list or ["-id", ]
 
     def get_search_list(self):
         return self.search_list
@@ -104,10 +148,14 @@ class StarkHandler(object):
         # print("pk_list = ", pk_list)
         self.model_class.objects.filter(id__in=pk_list).delete()
         # return redirect("https://www.jd.com")
+
     action_multi_delete.text = "批量删除"
 
     def get_action_list(self):
         return self.action_list
+
+    def get_search_group(self):
+        return self.search_group
 
     def __init__(self, site, model_class, prev):
         self.site = site
@@ -126,9 +174,9 @@ class StarkHandler(object):
         action_dict = {func.__name__: func.text for func in action_list}
         if request.method == "POST":
             action_func_name = request.POST.get('action')
-            print("action_func_name = ", action_func_name)
+            # print("action_func_name = ", action_func_name)
             if action_func_name and action_func_name in action_dict:
-                action_response = getattr(self,action_func_name)(request, *args, **kwargs)
+                action_response = getattr(self, action_func_name)(request, *args, **kwargs)
                 if action_response:
                     return action_response
 
@@ -139,14 +187,14 @@ class StarkHandler(object):
         2. 获取用户提交的关键字
         3. 构造搜索条件
         """
-        search_values = request.GET.get("q","")
+        search_values = request.GET.get("q", "")
         # print("search_values = ",search_values)
         # Q 查询，构造复杂的ORM查询条件
         conn = Q()
         conn.connector = 'OR'
         if search_values:
             for item in search_list:
-                conn.children.append((item,search_values))
+                conn.children.append((item, search_values))
 
         self.model_class.objects.filter(conn)
 
@@ -170,7 +218,7 @@ class StarkHandler(object):
         queryset = self.model_class.objects.filter(conn).order_by(*order_list)
         all_count = queryset.count()
         query_params = request.GET.copy()
-        query_params._mutable = True # "?page=5&key=cmz" 可以编辑
+        query_params._mutable = True  # "?page=5&key=cmz" 可以编辑
         # print("query_params = ",query_params) # query_params =  <QueryDict: {'page': ['2']}>
         # print("path_info",request.path_info) # path_info /stark/app01/userinfo/list/
         pager = Pagination(
@@ -178,7 +226,7 @@ class StarkHandler(object):
             all_count=all_count,
             base_url=request.path_info,
             query_params=query_params,
-            per_page=self.per_page_count,    # 默认每页显示10条数据
+            per_page=self.per_page_count,  # 默认每页显示10条数据
         )
 
         data_list = queryset[pager.start:pager.end]
@@ -191,7 +239,7 @@ class StarkHandler(object):
         header_list = []
         if list_display:
             for key_or_func in list_display:
-                if isinstance(key_or_func,FunctionType): # 函数
+                if isinstance(key_or_func, FunctionType):  # 函数
                     verbose_name = key_or_func(self, obj=None, is_header=True)
                 else:
                     verbose_name = self.model_class._meta.get_field(key_or_func).verbose_name
@@ -214,14 +262,14 @@ class StarkHandler(object):
         ]
         """
         body_list = []
-        for row in data_list: # 取出obj
+        for row in data_list:  # 取出obj
             tr_list = []
             if list_display:
                 for key_or_func in list_display:
                     if isinstance(key_or_func, FunctionType):  # 函数
-                        tr_list.append(key_or_func(self,row,is_header=False))
+                        tr_list.append(key_or_func(self, row, is_header=False))
                     else:
-                        tr_list.append(getattr(row,key_or_func))
+                        tr_list.append(getattr(row, key_or_func))
             else:
                 tr_list.append(row)  # 没有定制显示，直接显示对象
             body_list.append(tr_list)
@@ -229,6 +277,12 @@ class StarkHandler(object):
 
         # ----------------  4. 添加按钮 -------------------
         add_btn = self.get_add_btn()
+
+        # ----------------  组合搜索  -------------------
+        search_group = self.get_search_group()
+        for option_object in search_group:
+            option_object.get_queryset_or_tuple(self.model_class, request, *args, **kwargs)
+
         return render(
             request,
             "stark/changelist.html",
@@ -238,13 +292,13 @@ class StarkHandler(object):
                 "body_list": body_list,
                 "pager": pager,
                 "add_btn": add_btn,
-                "search_list":search_list,
+                "search_list": search_list,
                 "search_values": search_values,
                 "action_dict": action_dict,
             }
         )
 
-    def save(self,form,is_update=False):
+    def save(self, form, is_update=False):
         '''
         在ModelForm保存数据之前预留的钩子方法
         :param form:
@@ -266,13 +320,13 @@ class StarkHandler(object):
         model_form_class = self.get_model_form_class()
         if request.method == "GET":
             form = model_form_class()
-            return render(request,"stark/change.html",{"form":form})
+            return render(request, "stark/change.html", {"form": form})
         form = model_form_class(data=request.POST)
         if form.is_valid():
-            self.save(form,is_update=False)
+            self.save(form, is_update=False)
             # 在数据保存的时候，跳转回列表页面，携带原来的url后面的参数
             return redirect(self.reverse_list_url())
-        return  render(request, "stark/change.html", {"form": form})
+        return render(request, "stark/change.html", {"form": form})
 
     def change_view(self, request, pk, *args, **kwargs):
         """
@@ -308,11 +362,11 @@ class StarkHandler(object):
         self.model_class.objects.filter(pk=pk).delete()
         return redirect(origin_list_url)
 
-    def get_url_name(self,param):
+    def get_url_name(self, param):
         app_label, model_name = self.model_class._meta.app_label, self.model_class._meta.model_name
         if self.prev:
-            return "%s_%s_%s_%s" % (app_label, model_name,self.prev,param)
-        return "%s_%s_%s" % (app_label, model_name,param,)
+            return "%s_%s_%s_%s" % (app_label, model_name, self.prev, param)
+        return "%s_%s_%s" % (app_label, model_name, param,)
 
     @property
     def get_list_url_name(self):
@@ -398,11 +452,12 @@ class StarkHandler(object):
             return base_url
         return "%s?%s" % (base_url, params)
 
-    def wrapper(self,func):
+    def wrapper(self, func):
         @functools.wraps(func)
         def inner(request, *args, **kwargs):
             self.request = request
             return func(request, *args, **kwargs)
+
         return inner
 
     def get_urls(self):
@@ -443,7 +498,8 @@ class StarkSite(object):
         """
         if not handler_class:
             handler_class = StarkHandler
-        self._registry.append({"model_class": model_class, "handler": handler_class(self, model_class, prev), "prev": prev})
+        self._registry.append(
+            {"model_class": model_class, "handler": handler_class(self, model_class, prev), "prev": prev})
 
     def get_urls(self):
         patterns = []
