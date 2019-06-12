@@ -184,12 +184,7 @@
       <change afterPath="$PROJECT_DIR$/../luffy_permission/test/start1.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../luffy_permission/test/test.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../luffy_permission/测试.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/cmz.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/luffy_stark.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stark/static/stark/css/search-group.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../prev_luffy_stark/.idea/dbnavigator.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../prev_luffy_stark/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../prev_luffy_stark/.idea/misc.xml" afterDir="false" />
@@ -210,8 +205,10 @@
       <change afterPath="$PROJECT_DIR$/../../code-web/jquery/1_1.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../code-web/jquery/js/select_cmz.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app01/stark.py" beforeDir="false" afterPath="$PROJECT_DIR$/app01/stark.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stark/service/v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/stark/service/v1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stark/static/stark/css/commons.css" beforeDir="false" afterPath="$PROJECT_DIR$/stark/static/stark/css/commons.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stark/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/stark/templates/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stark/templates/stark/changelist.html" beforeDir="false" afterPath="$PROJECT_DIR$/stark/templates/stark/changelist.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -289,17 +286,17 @@
           <entry key="app01_userinfo" value="2" />
           <entry key="app02_host" value="1" />
           <entry key="app02_role" value="1" />
-          <entry key="css" value="3" />
-          <entry key="html" value="16" />
+          <entry key="css" value="5" />
+          <entry key="html" value="18" />
           <entry key="md" value="3" />
           <entry key="py" value="47" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="3" />
+          <entry key="CSS" value="5" />
           <entry key="Database Element" value="7" />
-          <entry key="HTML" value="16" />
+          <entry key="HTML" value="18" />
           <entry key="Markdown" value="3" />
           <entry key="Python" value="47" />
         </counts>
@@ -307,20 +304,22 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="cell" value="111" />
-          <entry key="html" value="1012" />
+          <entry key="css" value="8" />
+          <entry key="html" value="1194" />
           <entry key="md" value="506" />
-          <entry key="py" value="12838" />
+          <entry key="py" value="12905" />
           <entry key="py@luffy_stark" value="40" />
           <entry key="txt" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+          <entry key="CSS" value="8" />
           <entry key="CommandLine" value="40" />
-          <entry key="HTML" value="1012" />
+          <entry key="HTML" value="1194" />
           <entry key="Markdown" value="506" />
           <entry key="PLAIN_TEXT" value="5" />
-          <entry key="Python" value="12838" />
+          <entry key="Python" value="12905" />
           <entry key="Scratch" value="111" />
         </counts>
       </usages-collector>
@@ -331,18 +330,59 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stark/service/v1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1794">
-              <caret line="98" column="32" lean-forward="true" selection-start-line="98" selection-start-column="32" selection-end-line="98" selection-end-column="32" />
+            <state relative-caret-position="255">
+              <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
               <folding>
                 <element signature="e#42#58#0" expanded="true" />
-                <marker date="1560077062761" expanded="true" signature="835:1361" ph="..." />
-                <marker date="1560077062761" expanded="true" signature="1849:1883" ph="..." />
-                <marker date="1560077062761" expanded="true" signature="5852:5956" ph="..." />
-                <marker date="1560077062761" expanded="true" signature="5917:5956" ph="..." />
+                <marker date="1560333779824" expanded="true" signature="835:1481" ph="..." />
+                <marker date="1560333779824" expanded="true" signature="1969:2003" ph="..." />
+                <marker date="1560333779824" expanded="true" signature="5972:6076" ph="..." />
+                <marker date="1560333779824" expanded="true" signature="6037:6076" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/stark/templates/layout.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/stark/static/stark/css/commons.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="83" column="35" lean-forward="true" selection-start-line="83" selection-start-column="35" selection-end-line="83" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/stark/templates/stark/changelist.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="10" column="62" lean-forward="true" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
+              <folding>
+                <element signature="n#if#0;n#!!top" />
+                <element signature="n#if#1;n#!!top" />
+                <element signature="e#1920#2512#0#HTML" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/stark/static/stark/css/search-group.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="259">
+              <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -380,8 +420,8 @@
         <entry file="file://$PROJECT_DIR$/stark组件.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="4576">
-                <caret line="176" column="22" selection-start-line="176" selection-start-column="22" selection-end-line="176" selection-end-column="22" />
+              <first_editor relative-caret-position="208">
+                <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
               </first_editor>
               <second_editor />
             </state>
@@ -395,6 +435,7 @@
       <list>
         <option value="HTML File" />
         <option value="Python Script" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -441,17 +482,19 @@
         <option value="$PROJECT_DIR$/luffy_stark/urls.py" />
         <option value="$PROJECT_DIR$/app02/stark.py" />
         <option value="$PROJECT_DIR$/体重.py" />
-        <option value="$PROJECT_DIR$/stark/templates/layout.html" />
         <option value="$PROJECT_DIR$/luffy_stark/settings.py" />
         <option value="$PROJECT_DIR$/stark/utils/pager.py" />
         <option value="$PROJECT_DIR$/app01/models.py" />
         <option value="$PROJECT_DIR$/123.py" />
         <option value="$PROJECT_DIR$/stark组件.md" />
-        <option value="$PROJECT_DIR$/stark/templates/stark/changelist.html" />
         <option value="$PROJECT_DIR$/app01/stark.py" />
-        <option value="$PROJECT_DIR$/stark/service/v1.py" />
         <option value="$USER_HOME$/Desktop/check_port.py" />
         <option value="$PROJECT_DIR$/stark/service/test.py" />
+        <option value="$PROJECT_DIR$/stark/static/stark/css/commons.css" />
+        <option value="$PROJECT_DIR$/stark/templates/stark/changelist.html" />
+        <option value="$PROJECT_DIR$/stark/service/v1.py" />
+        <option value="$PROJECT_DIR$/stark/static/stark/css/search-group.css" />
+        <option value="$PROJECT_DIR$/stark/templates/layout.html" />
       </list>
     </option>
   </component>
@@ -461,9 +504,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="796" />
-    <option name="y" value="16" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="940" />
+    <option name="y" value="31" />
     <option name="width" value="1788" />
     <option name="height" value="1069" />
   </component>
@@ -501,6 +544,40 @@
               <item name="luffy_stark" type="462c0819:PsiDirectoryNode" />
               <item name="stark" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="luffy_stark" type="b2602c69:ProjectViewProjectNode" />
+              <item name="luffy_stark" type="462c0819:PsiDirectoryNode" />
+              <item name="stark" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="luffy_stark" type="b2602c69:ProjectViewProjectNode" />
+              <item name="luffy_stark" type="462c0819:PsiDirectoryNode" />
+              <item name="stark" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="stark" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="luffy_stark" type="b2602c69:ProjectViewProjectNode" />
+              <item name="luffy_stark" type="462c0819:PsiDirectoryNode" />
+              <item name="stark" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="stark" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="luffy_stark" type="b2602c69:ProjectViewProjectNode" />
+              <item name="luffy_stark" type="462c0819:PsiDirectoryNode" />
+              <item name="stark" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="luffy_stark" type="b2602c69:ProjectViewProjectNode" />
+              <item name="luffy_stark" type="462c0819:PsiDirectoryNode" />
+              <item name="stark" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="stark" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -512,6 +589,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
@@ -678,12 +756,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1110" y="0" width="1788" height="1069" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" weight="0.3297414" />
       <window_info id="DB Browser" order="1" weight="0.32845435" />
-      <window_info content_ui="combo" id="Project" order="2" weight="0.18149883" />
+      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.18103448" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="DB Execution Console" order="0" />
       <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
@@ -691,11 +769,11 @@
       <window_info active="true" anchor="bottom" id="manage.py@luffy_permission" order="3" visible="true" weight="0.32911393" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.50053877" side_tool="true" weight="0.21190476" />
       <window_info anchor="bottom" id="Database Changes" order="5" />
-      <window_info anchor="bottom" id="Terminal" order="6" sideWeight="0.4994612" weight="0.24095023" />
+      <window_info anchor="bottom" id="Terminal" order="6" sideWeight="0.4994612" weight="0.24047619" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.328877" />
       <window_info anchor="bottom" id="Message" order="8" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.3297619" />
-      <window_info anchor="bottom" id="Run" order="10" sideWeight="0.4994612" visible="true" weight="0.25439626" />
+      <window_info active="true" anchor="bottom" id="Run" order="10" sideWeight="0.4994612" visible="true" weight="0.44285715" />
       <window_info anchor="bottom" id="Debug" order="11" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
@@ -862,13 +940,6 @@
     <entry file="file://$PROJECT_DIR$/stark/static/stark/css/nav.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/stark/templates/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stark/admin.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -957,34 +1028,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/stark组件.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="4576">
-            <caret line="176" column="22" selection-start-line="176" selection-start-column="22" selection-end-line="176" selection-end-column="22" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app01/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="725">
           <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
           <folding>
             <marker date="1559559699643" expanded="true" signature="980:985" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stark/templates/stark/changelist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
-          <folding>
-            <element signature="n#if#0;n#!!top" />
-            <element signature="e#675#2317#0#HTML" />
-            <element signature="n#if#1;n#!!top" />
           </folding>
         </state>
       </provider>
@@ -1011,17 +1060,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/stark/static/stark/css/commons.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="83" column="35" lean-forward="true" selection-start-line="83" selection-start-column="35" selection-end-line="83" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stark/templates/stark/changelist.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="10" column="62" lean-forward="true" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
+          <folding>
+            <element signature="n#if#0;n#!!top" />
+            <element signature="n#if#1;n#!!top" />
+            <element signature="e#1920#2512#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/stark/service/v1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1794">
-          <caret line="98" column="32" lean-forward="true" selection-start-line="98" selection-start-column="32" selection-end-line="98" selection-end-column="32" />
+        <state relative-caret-position="255">
+          <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
           <folding>
             <element signature="e#42#58#0" expanded="true" />
-            <marker date="1560077062761" expanded="true" signature="835:1361" ph="..." />
-            <marker date="1560077062761" expanded="true" signature="1849:1883" ph="..." />
-            <marker date="1560077062761" expanded="true" signature="5852:5956" ph="..." />
-            <marker date="1560077062761" expanded="true" signature="5917:5956" ph="..." />
+            <marker date="1560333779824" expanded="true" signature="835:1481" ph="..." />
+            <marker date="1560333779824" expanded="true" signature="1969:2003" ph="..." />
+            <marker date="1560333779824" expanded="true" signature="5972:6076" ph="..." />
+            <marker date="1560333779824" expanded="true" signature="6037:6076" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stark组件.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="208">
+            <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stark/static/stark/css/search-group.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stark/templates/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
         </state>
       </provider>
     </entry>

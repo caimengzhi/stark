@@ -1,15 +1,32 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="luffy-container">
-
-        {% for row in search_group_row_list %}
-            <div>
-                {% for item in row %}
-                    {{ item|safe }}
-                {% endfor %}
+        {% if  search_group_row_list %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-filter" aria-hidden="true"></i> 快速筛选
+                </div>
+                <div class="panel-body">
+                    <div class="search-group">
+                        {% for row in search_group_row_list %}
+                            <div class="row">
+                                {% for obj in row %}
+                                    {{ obj|safe }}
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
-
-        {% endfor %}
+        {% endif %}
+        {#        {% for row in search_group_row_list %}#}
+        {#            <div>#}
+        {#                {% for item in row %}#}
+        {#                    {{ item|safe }}#}
+        {#                {% endfor %}#}
+        {#            </div>#}
+        {##}
+        {#        {% endfor %}#}
 
         {% if search_list %}
             <div style="float: right;">
@@ -75,3 +92,5 @@
         </nav>
     </div>
 {% endblock %}
+
+

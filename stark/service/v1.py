@@ -42,12 +42,16 @@ class SearchGroup(object):
         self.option = option
 
     def __iter__(self):
+        yield '<div class="whole">'
         yield self.title
+        yield "</div>"
+
+        yield  '<div class="others">'
         yield "<a>全部</a>"
         for item in self.queryset_or_tuple:
             text = self.option.get_text(item)
             yield "<a href='#'>%s</a>" % text
-
+        yield "</div>"
 class Option(object):
     def __init__(self, filed, db_condition=None, text_func=None):
         """
