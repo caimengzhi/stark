@@ -30,16 +30,18 @@ def get_choice_text(title, filed):
 
 
 class SearchGroup(object):
-    def __init__(self,title, queryset_or_tuple, option):
+    def __init__(self,title, queryset_or_tuple, option, query_dict):
         '''
         组合搜索关联获取到的数据
         :param title: 组合搜索的列名称
         :param queryset_or_tuple: 组合搜索关联获取到数据
         :param option: 配置
+        :param query_dict: request.GET
         '''
         self.title = title
         self.queryset_or_tuple = queryset_or_tuple
         self.option = option
+        self.query_dict = query_dict
 
     def __iter__(self):
         yield '<div class="whole">'
@@ -47,23 +49,44 @@ class SearchGroup(object):
         yield "</div>"
 
         yield  '<div class="others">'
-        yield "<a>全部</a>"
+        total_query_dict = self.query_dict.copy()
+        total_query_dict._mutable = True
+
+        origin_value_list = self.query_dict.getlist(self.option.field)
+        if not origin_value_list:
+            yield "<a class='active' href='?%s'>全部</a>" % total_query_dict.urlencode()
+        else:
+            total_query_dict.pop(self.option.field)
+            yield "<a href='?%s'>全部</a>" % total_query_dict.urlencode()
         for item in self.queryset_or_tuple:
             text = self.option.get_text(item)
-            yield "<a href='#'>%s</a>" % text
+            value = self.option.get_value(item)
+            # 需要request.GET
+            # 获取组合搜索按钮文本背后对应的值
+            query_dict = self.query_dict.copy()
+            query_dict._mutable = True # request GET的值，默认是不被修改的。
+            query_dict[self.option.field] = value
+            if str(value) in origin_value_list:
+                query_dict.pop(self.option.field)
+                yield "<a class='active' href='?%s'>%s</a>" % (query_dict.urlencode(),text)
+            else:
+                yield "<a href='?%s'>%s</a>" % (query_dict.urlencode(), text)
+
         yield "</div>"
 class Option(object):
-    def __init__(self, filed, db_condition=None, text_func=None):
+    def __init__(self, filed, db_condition=None, text_func=None, value_func=None):
         """
         :param filed: 组合搜索关联字段
         :param db_condition: 数据库管理查询的条件
         :param text_func: 此函数用于显示搜索按钮页面文本
+        :param value_func: 此函数用于显示组合搜索框按钮值
         """
         self.field = filed
         if not db_condition:
             db_condition = {}
         self.db_condition = db_condition
         self.text_func = text_func # 定制文本显示内容
+        self.value_func = value_func
         self.is_choice = False
 
     def get_db_condition(self, request,  *args, **kwargs):
@@ -86,13 +109,13 @@ class Option(object):
 
             # django 2.x获取,queryset
             db_condition = self.get_db_condition(request,  *args, **kwargs)
-            return SearchGroup(title, field_object.related_model.objects.filter(**db_condition),self)
+            return SearchGroup(title, field_object.related_model.objects.filter(**db_condition),self,request.GET)
             # option = Option("gender")
             # return SearchGroup(title, field_object.related_model.objects.filter(**db_condition),option)
         else:
             # 获取choice中的数据 元组
             self.is_choice =True
-            return SearchGroup(title, field_object.choices,self)
+            return SearchGroup(title, field_object.choices,self,request.GET)
 
     def get_text(self,field_object):
         if self.text_func:
@@ -101,6 +124,15 @@ class Option(object):
         if self.is_choice:
             return field_object[1]
         return str(field_object)
+
+    def get_value(self, field_object):
+        if self.value_func:
+            return self.value_func(field_object)
+
+        if self.is_choice:
+            return field_object[0]
+
+        return field_object.pk
 
 
 class StarkModelForm(forms.ModelForm):
