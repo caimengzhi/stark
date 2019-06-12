@@ -69,6 +69,7 @@ class UserInfoHandler(StarkHandler):
         Option("gender"),
         Option("depart", db_condition={'id__gt': 2}),
         # Option("depart", {'id__gt': 1}),
+        # Option("gender", text_func=lambda field_object: field_object[1]+'666'),
     ]
 
 

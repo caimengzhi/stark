@@ -20,7 +20,6 @@ def get_choice_text(title, filed):
     :param filed: 字段名称
     :return:
     """
-
     def inner(self, obj=None, is_header=None):
         if is_header:
             return title
@@ -31,31 +30,37 @@ def get_choice_text(title, filed):
 
 
 class SearchGroup(object):
-    def __init__(self,queryset_or_tuple):
-        """
+    def __init__(self,title, queryset_or_tuple, option):
+        '''
         组合搜索关联获取到的数据
-        :param queryset_or_tuple:
-        """
+        :param title: 组合搜索的列名称
+        :param queryset_or_tuple: 组合搜索关联获取到数据
+        :param option: 配置
+        '''
+        self.title = title
         self.queryset_or_tuple = queryset_or_tuple
+        self.option = option
 
     def __iter__(self):
-        if isinstance(self.queryset_or_tuple,tuple):
-            for item in self.queryset_or_tuple:
-                yield "<a href='#'>%s</a>" % item[1]
-        else:
-            for item in self.queryset_or_tuple:
-                yield "<a href='#'>%s</a>" % str(item)
+        yield self.title
+        yield "<a>全部</a>"
+        for item in self.queryset_or_tuple:
+            text = self.option.get_text(item)
+            yield "<a href='#'>%s</a>" % text
 
 class Option(object):
-    def __init__(self, filed, db_condition=None):
+    def __init__(self, filed, db_condition=None, text_func=None):
         """
         :param filed: 组合搜索关联字段
         :param db_condition: 数据库管理查询的条件
+        :param text_func: 此函数用于显示搜索按钮页面文本
         """
         self.field = filed
         if not db_condition:
             db_condition = {}
         self.db_condition = db_condition
+        self.text_func = text_func # 定制文本显示内容
+        self.is_choice = False
 
     def get_db_condition(self, request,  *args, **kwargs):
         return self.db_condition
@@ -68,7 +73,7 @@ class Option(object):
         # print(item)
         # # 根据字符串去自己对应的model类中找到字段对象，在根据对象去获取关联数据
         field_object = model_class._meta.get_field(self.field)
-        # print("field_object = ",field_object)
+        title = field_object.verbose_name
         # 获取关联数据
         if isinstance(field_object, ForeignKey) or isinstance(field_object, ManyToManyField):
             # FK M2M应该u获取关联表中的数据
@@ -76,13 +81,22 @@ class Option(object):
             # print(item,field_object.rel.model.objects.all())
 
             # django 2.x获取,queryset
-            db_condition = self.get_db_condition( request,  *args, **kwargs)
-            return SearchGroup(field_object.related_model.objects.filter(**db_condition))
-            # return field_object.related_model.objects.filter(**db_condition)
+            db_condition = self.get_db_condition(request,  *args, **kwargs)
+            return SearchGroup(title, field_object.related_model.objects.filter(**db_condition),self)
+            # option = Option("gender")
+            # return SearchGroup(title, field_object.related_model.objects.filter(**db_condition),option)
         else:
             # 获取choice中的数据 元组
-            return SearchGroup(field_object.choices)
-            # return field_object.choices
+            self.is_choice =True
+            return SearchGroup(title, field_object.choices,self)
+
+    def get_text(self,field_object):
+        if self.text_func:
+            return self.text_func(field_object)
+
+        if self.is_choice:
+            return field_object[1]
+        return str(field_object)
 
 
 class StarkModelForm(forms.ModelForm):
