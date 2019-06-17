@@ -610,6 +610,7 @@ class StarkSite(object):
 
     def get_urls(self):
         patterns = []
+        print("self._registry = ", self._registry)
         for item in self._registry:
             model_class = item["model_class"]
             handler = item["handler"]
