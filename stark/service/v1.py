@@ -53,6 +53,8 @@ class SearchGroup(object):
         total_query_dict._mutable = True
 
         origin_value_list = self.query_dict.getlist(self.option.field)
+        # print("total_query_dict = ",total_query_dict)
+        # print("total_query_dict.urlencode = ",total_query_dict.urlencode)
         if not origin_value_list:
             yield "<a class='active' href='?%s'>全部</a>" % total_query_dict.urlencode()
         else:
@@ -225,6 +227,21 @@ class StarkHandler(object):
     def get_search_group(self):
         return self.search_group
 
+
+
+    def get_search_group_condition(self,request):
+        """
+        获取组合搜索条件
+        :param request:
+        :return:
+        """
+        condition = {}
+        for option in self.get_search_group():
+            values_list = request.GET.get(option.field)
+            if not values_list:continue
+            condition["%s__in"%option.field] = values_list
+        return condition
+
     def __init__(self, site, model_class, prev):
         self.site = site
         self.model_class = model_class
@@ -268,7 +285,8 @@ class StarkHandler(object):
 
         # -----------1. 获取排'序 ------------
         order_list = self.get_order_list()
-
+        # 获取组合搜索的条件
+        search_group_condition = self.get_search_group_condition(request)
         self.request = request
         # 从数据库中获取所有的数据
         # 根据url中获取的page=n，来切片
@@ -283,7 +301,7 @@ class StarkHandler(object):
         # print(self.model_class)
 
         # ########## 2. 处理分页 ##########
-        queryset = self.model_class.objects.filter(conn).order_by(*order_list)
+        queryset = self.model_class.objects.filter(conn).filter(**search_group_condition).order_by(*order_list)
         all_count = queryset.count()
         query_params = request.GET.copy()
         query_params._mutable = True  # "?page=5&key=cmz" 可以编辑

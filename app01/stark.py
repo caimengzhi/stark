@@ -47,7 +47,7 @@ class UserInfoHandler(StarkHandler):
     # per_page_count = 20
     per_page_count = 10
     # has_add_btn = False
-    model_form_class = UserInfoModelForm
+    # model_form_class = UserInfoModelForm
     order_list = ['id']  # 排序，sql中的order
 
     # 姓名中含有关键字或者邮箱中含有关键字
@@ -61,9 +61,9 @@ class UserInfoHandler(StarkHandler):
     # def multi_init(self, request, *args, **kwargs):
     # multi_init.text = "批量处理"
     # action_list = [multi_delete, multi_init]
-    def save(self, form, is_update=False):
-        form.instance.depart_id = 1
-        form.save()
+    # def save(self, form, is_update=False):
+    #     form.instance.depart_id = 1
+    #     form.save()
 
     search_group = [
         Option("gender"),
