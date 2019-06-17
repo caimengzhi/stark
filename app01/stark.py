@@ -66,7 +66,7 @@ class UserInfoHandler(StarkHandler):
     #     form.save()
 
     search_group = [
-        Option("gender"),
+        Option("gender", is_multi=True),
         Option("depart", db_condition={'id__gt': 2}),
         # Option("depart", {'id__gt': 1}),
         # Option("gender", text_func=lambda field_object: field_object[1]+'666'),

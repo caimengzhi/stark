@@ -62,28 +62,42 @@ class SearchGroup(object):
             yield "<a href='?%s'>全部</a>" % total_query_dict.urlencode()
         for item in self.queryset_or_tuple:
             text = self.option.get_text(item)
-            value = self.option.get_value(item)
+            value = str(self.option.get_value(item))
             # 需要request.GET
             # 获取组合搜索按钮文本背后对应的值
             query_dict = self.query_dict.copy()
             query_dict._mutable = True # request GET的值，默认是不被修改的。
-            query_dict[self.option.field] = value
-            if str(value) in origin_value_list:
-                query_dict.pop(self.option.field)
-                yield "<a class='active' href='?%s'>%s</a>" % (query_dict.urlencode(),text)
-            else:
-                yield "<a href='?%s'>%s</a>" % (query_dict.urlencode(), text)
 
+            if not self.option.is_multi:  # 单选
+                query_dict[self.option.field] = value
+                if value in origin_value_list:
+                    query_dict.pop(self.option.field)
+                    yield "<a class='active' href='?%s'>%s</a>" % (query_dict.urlencode(),text)
+                else:
+                    yield "<a href='?%s'>%s</a>" % (query_dict.urlencode(), text)
+            else:
+                # {'gender':[1,]}
+                multi_value_list = query_dict.getlist(self.option.field)
+                if value in multi_value_list:
+                    multi_value_list.remove(value)
+                    query_dict.setlist(self.option.field,multi_value_list)
+                    yield "<a class='active' href='?%s'>%s</a>" % (query_dict.urlencode(), text)
+                else:
+                    multi_value_list.append(str(value))
+                    query_dict.setlist(self.option.field, multi_value_list)
+                    yield "<a href='?%s'>%s</a>" % (query_dict.urlencode(), text)
         yield "</div>"
 class Option(object):
-    def __init__(self, filed, db_condition=None, text_func=None, value_func=None):
+    def __init__(self, filed, is_multi=False, db_condition=None, text_func=None, value_func=None):
         """
         :param filed: 组合搜索关联字段
+        :param is_multi: 是否支持多选，默认不支持
         :param db_condition: 数据库管理查询的条件
         :param text_func: 此函数用于显示搜索按钮页面文本
         :param value_func: 此函数用于显示组合搜索框按钮值
         """
         self.field = filed
+        self.is_multi = is_multi
         if not db_condition:
             db_condition = {}
         self.db_condition = db_condition
@@ -237,9 +251,14 @@ class StarkHandler(object):
         """
         condition = {}
         for option in self.get_search_group():
-            values_list = request.GET.get(option.field)
-            if not values_list:continue
-            condition["%s__in"%option.field] = values_list
+            if option.is_multi:  # 多选
+                values_list = request.GET.getlist(option.field)
+                if not values_list:continue
+                condition["%s__in"%option.field] = values_list
+            else:  # 单选
+                value = request.GET.get(option.field)
+                if not value:continue
+                condition[option.field] = value
         return condition
 
     def __init__(self, site, model_class, prev):
