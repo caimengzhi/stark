@@ -87,6 +87,7 @@ class SearchGroup(object):
                     query_dict.setlist(self.option.field, multi_value_list)
                     yield "<a href='?%s'>%s</a>" % (query_dict.urlencode(), text)
         yield "</div>"
+
 class Option(object):
     def __init__(self, filed, is_multi=False, db_condition=None, text_func=None, value_func=None):
         """
@@ -149,7 +150,6 @@ class Option(object):
             return field_object[0]
 
         return field_object.pk
-
 
 class StarkModelForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
