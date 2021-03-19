@@ -2,7 +2,7 @@ appdirs==1.4.3
 certifi==2019.3.9
 chardet==3.0.4
 Click==7.0
-Django==2.2.1
+Django==2.2.18
 dukpy==0.2.2
 echarts==0.0.0
 echarts-themes-pypkg==0.0.3
