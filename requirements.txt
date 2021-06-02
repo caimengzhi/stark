@@ -34,6 +34,6 @@ requests==2.22.0
 six==1.12.0
 sqlparse==0.3.0
 tqdm==4.32.1
-urllib3==1.25.3
+urllib3==1.26.5
 websockets==7.0
 Werkzeug==0.15.4
