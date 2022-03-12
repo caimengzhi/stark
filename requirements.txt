@@ -20,7 +20,7 @@ MarkupSafe==1.1.1
 numpy==1.16.3
 pandas==0.24.2
 peppercorn==0.6
-Pillow==6.0.0
+Pillow==9.0.1
 prettytable==0.7.2
 pyecharts==0.5.11
 pyecharts-javascripthon==0.0.6
